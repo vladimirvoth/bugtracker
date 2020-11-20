@@ -1,0 +1,23 @@
+{
+  "standardError": "Oops, Something went wrong",
+  "emptyUsername": "Please fill in your full name.",
+  "invalidEmailAddress": "Please fill in a valid email address.",
+  "existingEmailAddress": "This email address already exists.",
+  "emptyPassword": "The password field is empty.",
+  "invalidPassword": "Password needs to be between 8 and 40 characters.",
+  "notMatchingPassword": "Passwords do not match.",
+  "notNewPassword": "Your new password can't be identical to the old password.",
+  "registrationMailSubject": "Your registration on Bugtracker",
+  "registrationMailHTML": "<strong>Please confirm your email adress here: </strong><a href=\"${confirmationUrl}\">Confirm</a>",
+  "registrationMailText": "Please confirm your email adress here: ${confirmationUrl}",
+  "registrationSuccess": "You are now registered and able to log in.",
+  "loginError": "Your password or email address is not correct.",
+  "logoutSuccess": "You are logged out.",
+  "emailConfirmationSuccess": "Your email address is confirmed now.",
+  "passwordRecoveryMailSubject": "Recover you password",
+  "passwordRecoveryMailHTML": "<strong>Recover your password: </strong><a href=\"${passwordRecoveryUrl}\">Confirm</a>",
+  "passwordRecoveryMailText": "Recover your password: ${passwordRecoveryUrl}",
+  "passwordRecoverSuccess": "Password was reseted, please check your emails.",
+  "passwordResetSuccess": "Your password was reseted. You can now login with your new password.",
+  "updateAccountSuccess": "Your account was updated successfully."
+}

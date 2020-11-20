@@ -1,0 +1,22 @@
+@import '../../../../styles/globals/vars.scss';
+
+:host {
+  display: block;
+
+  .bg-image {
+    height: 100vh;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    filter: blur(3px);
+
+    &__first {
+      background-image: url('../../../../assets/images/background_1.jpg');
+    }
+
+    &__second {
+      background-image: url('../../../../assets/images/background_2.jpg');
+    }
+  }
+}

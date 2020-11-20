@@ -1,0 +1,30 @@
+@import '../../../../../styles/globals/vars.scss';
+
+:host {
+  display: block;
+
+  .register {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    box-shadow: $bs-standard;
+    border-radius: $br-normal;
+    background-color: $c1-bg-color;
+
+    &__step {
+      padding: 2rem 3rem;
+    }
+
+    &__label {
+      font-size: $fs-text-middle;
+    }
+
+    &__footer-link {
+      display: block;
+      font-size: $fs-text-normal;
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@import '../../../../../styles/globals/vars.scss';
+
+:host {
+  display: block;
+
+  .login {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    padding: 2rem 3rem;
+    background-color: $c1-bg-color;
+    box-shadow: $bs-standard;
+    border-radius: $br-normal;
+
+    &__password-link {
+      font-size: $fs-text-normal;
+    }
+
+    &__label {
+      font-size: $fs-text-middle;
+    }
+
+    &__footer-text {
+      display: block;
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,47 @@
+<div
+  class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm"
+>
+  <a class="my-0 mr-md-auto navbar__logo" href="/">
+    <img
+      class="navbar__logo-image"
+      src="/assets/svg/logo.svg"
+      alt="Bugtracker Logo"
+    />
+    <h5 class="navbar__logo-title">Bugtracker</h5>
+  </a>
+  <ng-container *ngIf="!(loading$ | async)">
+    <ng-container
+      *ngIf="user$ | async; then loggedIn; else loggedOut"
+    ></ng-container>
+    <ng-template #loggedIn>
+      <nav class="my-2 my-md-0 mr-md-3 navbar-with-picture">
+        <div class="navbar__dropdown">
+          <img
+            class="navbar__profile-picture"
+            [src]="
+              (user$ | async).picture || '/assets/images/blank-profile.png'
+            "
+            alt="{{ (user$ | async).username }}"
+          />
+          <div class="navbar__dropdown-content">
+            <span class="p-2 text-dark"
+              >Hello, {{ (user$ | async).username }}</span
+            >
+            <hr />
+            <a class="p-2 text-dark" href="#" (click)="logout($event)"
+              >Logout</a
+            >
+          </div>
+        </div>
+      </nav>
+    </ng-template>
+    <ng-template #loggedOut>
+      <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="/auth">Login</a>
+      </nav>
+      <a class="btn btn-primary navbar__register-btn" href="/auth/register"
+        >Start Now <fa-icon [icon]="faAngleRight"></fa-icon>
+      </a>
+    </ng-template>
+  </ng-container>
+</div>

@@ -1,0 +1,11 @@
+:host {
+  display: block;
+
+  .social-login {
+      margin: 1rem 0;
+
+      &__btn {
+        margin-bottom: 1rem;
+      }
+  }
+}

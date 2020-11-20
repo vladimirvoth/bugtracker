@@ -1,0 +1,158 @@
+<div class="register">
+  <div class="register__step" *ngIf="step == 1">
+    <h1>Welcome!</h1>
+    <h2>Lege mit drei einfachen Schritten los</h2>
+    <form
+      #emailForm="ngForm"
+      (ngSubmit)="emailForm.form.valid && changeStep(2)"
+      autocomplete="off"
+    >
+      <div class="form-group">
+        <label class="register__label" for="email"
+          >E-Mail-Adresse eingeben</label
+        >
+        <input
+          emailExists
+          type="email"
+          class="form-control"
+          id="email"
+          [(ngModel)]="form.email"
+          [disabled]="loading$ | async"
+          #email="ngModel"
+          placeholder="name@example.com"
+          name="email"
+          required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          email
+        />
+        <span
+          class="error-feedback"
+          *ngIf="
+            (email.touched || emailForm.submitted) && email.errors?.required
+          "
+        >
+          Email address required.
+        </span>
+        <span class="error-feedback" *ngIf="email.errors?.pattern">
+          Enter a valid email address
+        </span>
+        <span class="error-feedback" *ngIf="email.errors?.emailExists">
+          Email address already exists
+        </span>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary btn-large"
+        [disabled]="!emailForm.form.valid"
+      >
+        Fortfahren
+      </button>
+    </form>
+    <hr />
+    <app-social-login></app-social-login>
+    <a class="register__footer-link" href="auth/login"
+      >Hast du bereits ein Konto? Zum Login.</a
+    >
+  </div>
+  <div class="register__step" *ngIf="step == 2">
+    <h1>Vervollständige deine Kontoangaben</h1>
+    <form
+      #registerForm="ngForm"
+      (ngSubmit)="registerForm.form.valid && register()"
+      [matchPassword]="['password', 'confirmPassword']"
+      autocomplete="off"
+    >
+      <div class="form-group">
+        <label class="register__label" for="username">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          [(ngModel)]="form.username"
+          [disabled]="loading$ | async"
+          #username="ngModel"
+          name="username"
+          required
+        />
+        <span
+          class="error-feedback"
+          *ngIf="
+            (username.touched || registerForm.submitted) &&
+            username.errors?.required
+          "
+        >
+          Name is required
+        </span>
+      </div>
+      <div class="form-group">
+        <label class="register__label" for="password">Password</label>
+        <input
+          passwordPattern
+          type="password"
+          class="form-control"
+          id="password"
+          [(ngModel)]="form.password"
+          [disabled]="loading$ | async"
+          #password="ngModel"
+          name="password"
+          required
+        />
+        <span
+          class="error-feedback"
+          *ngIf="
+            (password.touched || registerForm.submitted) &&
+            password.errors?.required
+          "
+        >
+          Password is required
+        </span>
+        <span
+          class="error-feedback"
+          *ngIf="password.touched && password.errors?.invalidPassword"
+        >
+          Password should have minimum 8 characters, at least 1 uppercase
+          letter, 1 lowercase letter and 1 number
+        </span>
+      </div>
+      <div class="form-group">
+        <label class="register__label" for="confirmPassword"
+          >Confirm Password</label
+        >
+        <input
+          type="password"
+          class="form-control"
+          id="confirmPassword"
+          [(ngModel)]="form.confirmPassword"
+          [disabled]="loading$ | async"
+          #confirmPassword="ngModel"
+          name="confirmPassword"
+          required
+        />
+        <span
+          class="error-feedback"
+          *ngIf="
+            (confirmPassword.touched || registerForm.submitted) &&
+            confirmPassword.errors?.required
+          "
+        >
+          Confirm Password is required
+        </span>
+        <span
+          class="error-feedback"
+          *ngIf="
+            confirmPassword.touched && confirmPassword.errors?.passwordMismatch
+          "
+        >
+          Passwords does not match
+        </span>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary btn-large"
+        [disabled]="!registerForm.form.valid"
+      >
+        Registrieren
+      </button>
+    </form>
+  </div>
+</div>
