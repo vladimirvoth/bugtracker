@@ -16,7 +16,8 @@ import { AuthService } from '../services/auth.service';
     }
   ],
   host: {
-    '(keyup)': 'validate($event)'
+    '(keyup)': 'validate($event)',
+    '(change)': 'validate($event)'
   }
 })
 export class EmailExistsDirective implements Validator {
