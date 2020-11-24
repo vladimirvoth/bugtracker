@@ -14,7 +14,6 @@ import { ResetPasswordComponent } from './containers/reset-password/reset-passwo
 import {
     SocialAuthCallbackComponent
 } from './containers/social-auth-callback/social-auth-callback.component';
-import { EmailExistsDirective } from './directives/email-exists.directive';
 import { MatchPasswordDirective } from './directives/match-password.directive';
 import { PasswordPatternDirective } from './directives/password-pattern.directive';
 import { AuthService } from './services/auth.service';
@@ -51,7 +50,6 @@ const routes: Routes = [
     RegisterComponent,
     ResetPasswordComponent,
     MatchPasswordDirective,
-    EmailExistsDirective,
     PasswordPatternDirective,
     SocialLoginComponent,
     SocialAuthCallbackComponent

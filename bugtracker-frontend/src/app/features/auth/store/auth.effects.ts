@@ -10,6 +10,46 @@ import * as AuthActions from './auth.actions';
 
 @Injectable()
 export class AuthEffects {
+  checkEmailExists$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.checkEmailExists),
+      exhaustMap((payload) =>
+        this.authService.emailExists(payload.email).pipe(
+          map((resp) =>
+            AuthActions.checkEmailExistsSuccess({
+              emailExists: resp.emailExists
+            })
+          ),
+          catchError((error) =>
+            of(
+              addErrorToast({
+                headline: 'Sorry! Something went wrong failed',
+                message: error.error.msg
+              }),
+              AuthActions.flush()
+            )
+          )
+        )
+      )
+    )
+  );
+
+  checkEmailExistsSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthActions.checkEmailExistsSuccess),
+        // timeout(10000),
+        map(() => AuthActions.flush())
+        // tap(() => {
+        // console.log('na hier');
+        // setTimeout(() => {
+        // AuthActions.flush();
+        // }, 3000);
+        // })
+      )
+    // { dispatch: false }
+  );
+
   register$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.register),
@@ -79,7 +119,7 @@ export class AuthEffects {
           catchError((error) =>
             of(
               addErrorToast({
-                headline: 'Sorry! Login failed',
+                headline: 'Sorry! Reset Password failed',
                 message: error.error.msg
               }),
               AuthActions.flush()

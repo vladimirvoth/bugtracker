@@ -1,11 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { User } from '../models/auth';
 import * as AuthActions from './auth.actions';
 
 export const authFeatureKey = 'auth';
 
 export interface AuthState {
+  step: number;
+  emailExists: boolean;
   loading: boolean;
 }
 
@@ -14,11 +15,23 @@ export interface State {
 }
 
 export const initialState: AuthState = {
+  step: 0,
+  emailExists: false,
   loading: false
 };
 
 const authReducer = createReducer<AuthState>(
   initialState,
+  on(AuthActions.checkEmailExists, (state) => ({
+    ...state,
+    loading: true
+  })),
+  on(AuthActions.checkEmailExistsSuccess, (state, { emailExists }) => ({
+    ...state,
+    step: !emailExists ? 1 : 0,
+    emailExists,
+    loading: false
+  })),
   on(AuthActions.register, (state) => ({
     ...state,
     loading: true
@@ -44,6 +57,8 @@ const authReducer = createReducer<AuthState>(
   })),
   on(AuthActions.flush, (state) => ({
     ...state,
+    step: 0,
+    emailExists: false,
     loading: false
   }))
 );

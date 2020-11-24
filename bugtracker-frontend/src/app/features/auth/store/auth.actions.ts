@@ -1,6 +1,16 @@
 import { createAction, props } from '@ngrx/store';
 
-import { User, UserAuth } from '../models/auth';
+import { UserAuth } from '../models/auth';
+
+export const checkEmailExists = createAction(
+  '[Auth] Check Email Exists',
+  props<{ email: string }>()
+);
+
+export const checkEmailExistsSuccess = createAction(
+  '[Auth] Check Email Exists Success',
+  props<{ emailExists: boolean }>()
+);
 
 export const register = createAction(
   '[Auth] Register',

@@ -1,10 +1,10 @@
 <div class="register">
-  <div class="register__step" *ngIf="step == 1">
+  <div class="register__step" *ngIf="(step$ | async) == 0">
     <h1>Welcome!</h1>
     <h2>Lege mit drei einfachen Schritten los</h2>
     <form
       #emailForm="ngForm"
-      (ngSubmit)="emailForm.form.valid && changeStep(2)"
+      (ngSubmit)="emailForm.form.valid && continue()"
       autocomplete="off"
     >
       <div class="form-group">
@@ -12,7 +12,6 @@
           >E-Mail-Adresse eingeben</label
         >
         <input
-          emailExists
           type="email"
           class="form-control"
           id="email"
@@ -36,7 +35,7 @@
         <span class="error-feedback" *ngIf="email.errors?.pattern">
           Enter a valid email address
         </span>
-        <span class="error-feedback" *ngIf="email.errors?.emailExists">
+        <span class="error-feedback" *ngIf="emailExists$ | async">
           Email address already exists
         </span>
       </div>
@@ -54,7 +53,7 @@
       >Hast du bereits ein Konto? Zum Login.</a
     >
   </div>
-  <div class="register__step" *ngIf="step == 2">
+  <div class="register__step" *ngIf="(step$ | async) == 1">
     <h1>Vervollständige deine Kontoangaben</h1>
     <form
       #registerForm="ngForm"

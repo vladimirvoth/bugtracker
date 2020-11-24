@@ -2,7 +2,6 @@ import { Observable } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { environment } from '../../../../environments/environment';
@@ -18,9 +17,9 @@ export class AuthService {
     return localStorage.getItem('token') !== null;
   }
 
-  emailExists(userControl: AbstractControl) {
+  emailExists(email: string) {
     return this.http.post<EmailExists>(`${environment.baseUrl}/auth/email`, {
-      email: userControl.value
+      email
     });
   }
 
