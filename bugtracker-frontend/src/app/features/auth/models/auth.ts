@@ -1,7 +1,3 @@
-export interface EmailExists {
-  emailExists: boolean;
-}
-
 export interface User {
   id: string;
   username: string;

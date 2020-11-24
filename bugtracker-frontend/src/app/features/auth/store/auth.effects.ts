@@ -15,11 +15,7 @@ export class AuthEffects {
       ofType(AuthActions.checkEmailExists),
       exhaustMap((payload) =>
         this.authService.emailExists(payload.email).pipe(
-          map((resp) =>
-            AuthActions.checkEmailExistsSuccess({
-              emailExists: resp.emailExists
-            })
-          ),
+          map(() => AuthActions.checkEmailExistsSuccess()),
           catchError((error) =>
             of(
               addErrorToast({

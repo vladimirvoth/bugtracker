@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { environment } from '../../../../environments/environment';
-import { EmailExists, User, UserAuth } from '../models/auth';
+import { User, UserAuth } from '../models/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class AuthService {
   }
 
   emailExists(email: string) {
-    return this.http.post<EmailExists>(`${environment.baseUrl}/auth/email`, {
+    return this.http.post(`${environment.baseUrl}/auth/email`, {
       email
     });
   }

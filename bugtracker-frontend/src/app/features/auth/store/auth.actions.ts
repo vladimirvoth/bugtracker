@@ -8,8 +8,7 @@ export const checkEmailExists = createAction(
 );
 
 export const checkEmailExistsSuccess = createAction(
-  '[Auth] Check Email Exists Success',
-  props<{ emailExists: boolean }>()
+  '[Auth] Check Email Exists Success'
 );
 
 export const register = createAction(

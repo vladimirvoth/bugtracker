@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const passport = require('passport');
 const createError = require('http-errors');
+const sslRedirect = require('heroku-ssl-redirect').default;
 
 require('dotenv').config();
 
@@ -32,6 +33,7 @@ mongoose.connection.on('connected', () => {
 const app = express();
 const port = process.env.PORT || 8080;
 
+app.use(sslRedirect());
 app.use(logger('dev'));
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
