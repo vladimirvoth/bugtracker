@@ -1,11 +1,13 @@
+import { filter, map } from 'rxjs/operators';
+
 import { Component, Optional } from '@angular/core';
 import { LayoutComponent } from '@core/containers/layout/layout.component';
 import { Store } from '@ngrx/store';
 
 import { RegisterForm } from '../../models/form';
-import { register } from '../../store/auth.actions';
+import { checkEmailExists, register } from '../../store/auth.actions';
 import * as fromAuth from '../../store/auth.reducer';
-import { selectLoadingState } from '../../store/auth.selector';
+import { selectLoadingState, selectStepState } from '../../store/auth.selector';
 
 @Component({
   selector: 'app-register',
@@ -13,10 +15,10 @@ import { selectLoadingState } from '../../store/auth.selector';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  step = 1;
   form = new RegisterForm();
 
   loading$ = this.store.select(selectLoadingState);
+  step$ = this.store.select(selectStepState);
 
   constructor(
     private store: Store<fromAuth.State>,
@@ -25,8 +27,8 @@ export class RegisterComponent {
     this.layout.pageType = 'C';
   }
 
-  changeStep(step) {
-    this.step = step;
+  continue() {
+    this.store.dispatch(checkEmailExists({ email: this.form.email }));
   }
 
   register() {

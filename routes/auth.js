@@ -19,10 +19,12 @@ router.post('/email', async (req, res) => {
   });
 
   if (user && user.length !== 0) {
-    return res.json({ emailExists: true });
+    return res.status(409).json({
+      msg: content.existingEmailAddress
+    });
   }
 
-  return res.json({ emailExists: false });
+  return res.json({ success: true });
 });
 
 const registerValidation = [
