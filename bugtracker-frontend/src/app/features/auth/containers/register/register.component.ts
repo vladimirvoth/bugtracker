@@ -1,3 +1,5 @@
+import { filter, map } from 'rxjs/operators';
+
 import { Component, Optional } from '@angular/core';
 import { LayoutComponent } from '@core/containers/layout/layout.component';
 import { Store } from '@ngrx/store';
@@ -26,6 +28,12 @@ export class RegisterComponent {
     @Optional() private layout: LayoutComponent
   ) {
     this.layout.pageType = 'C';
+
+    // this.emailExists$.pipe(filter((emailExists) => emailExists)).subscribe(() =>
+    //   setTimeout(() => {
+    //     this.store.dispatch(flush());
+    //   }, 1000)
+    // );
   }
 
   continue() {
@@ -40,6 +48,8 @@ export class RegisterComponent {
         username: this.form.username
       })
     );
+
+    // this.form.reset();
   }
 
   ngOnDestroy() {

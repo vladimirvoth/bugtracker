@@ -34,22 +34,6 @@ export class AuthEffects {
     )
   );
 
-  checkEmailExistsSuccess$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(AuthActions.checkEmailExistsSuccess),
-        // timeout(10000),
-        map(() => AuthActions.flush())
-        // tap(() => {
-        // console.log('na hier');
-        // setTimeout(() => {
-        // AuthActions.flush();
-        // }, 3000);
-        // })
-      )
-    // { dispatch: false }
-  );
-
   register$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.register),
