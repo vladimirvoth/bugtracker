@@ -16,14 +16,15 @@ import { AuthService } from '../services/auth.service';
     }
   ],
   host: {
-    '(keyup)': 'validate($event)',
-    '(change)': 'validate($event)'
+    '(change)': 'validate($event)',
+    '(keyup)': 'validate($event)'
   }
 })
 export class EmailExistsDirective implements Validator {
   constructor(private authService: AuthService) {}
 
   validate(control: AbstractControl): Observable<ValidationErrors | null> {
+    console.log('validate', control);
     return this.authService.emailExists(control).pipe(
       map((resp) => {
         return resp.emailExists === false
