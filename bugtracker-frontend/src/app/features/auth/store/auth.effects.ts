@@ -23,8 +23,7 @@ export class AuthEffects {
           catchError((error) =>
             of(
               addErrorToast({
-                headline: 'Sorry! Something went wrong failed',
-                message: error.error.msg
+                headline: error.error.msg
               }),
               AuthActions.flush()
             )

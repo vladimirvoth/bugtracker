@@ -6,7 +6,6 @@ export const authFeatureKey = 'auth';
 
 export interface AuthState {
   step: number;
-  emailExists: boolean;
   loading: boolean;
 }
 
@@ -16,7 +15,6 @@ export interface State {
 
 export const initialState: AuthState = {
   step: 0,
-  emailExists: false,
   loading: false
 };
 
@@ -26,10 +24,9 @@ const authReducer = createReducer<AuthState>(
     ...state,
     loading: true
   })),
-  on(AuthActions.checkEmailExistsSuccess, (state, { emailExists }) => ({
+  on(AuthActions.checkEmailExistsSuccess, (state) => ({
     ...state,
-    step: !emailExists ? 1 : 0,
-    emailExists,
+    step: 1,
     loading: false
   })),
   on(AuthActions.register, (state) => ({
@@ -58,7 +55,6 @@ const authReducer = createReducer<AuthState>(
   on(AuthActions.flush, (state) => ({
     ...state,
     step: 0,
-    emailExists: false,
     loading: false
   }))
 );

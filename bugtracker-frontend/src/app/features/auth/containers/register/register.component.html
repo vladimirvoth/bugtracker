@@ -35,14 +35,11 @@
         <span class="error-feedback" *ngIf="email.errors?.pattern">
           Enter a valid email address
         </span>
-        <span class="error-feedback" *ngIf="emailExists$ | async">
-          Email address already exists
-        </span>
       </div>
       <button
         type="submit"
         class="btn btn-primary btn-large"
-        [disabled]="!emailForm.form.valid"
+        [disabled]="!emailForm.form.dirty || !emailForm.form.valid"
       >
         Fortfahren
       </button>
@@ -148,7 +145,7 @@
       <button
         type="submit"
         class="btn btn-primary btn-large"
-        [disabled]="!registerForm.form.valid"
+        [disabled]="!registerForm.form.dirty || !registerForm.form.valid"
       >
         Registrieren
       </button>

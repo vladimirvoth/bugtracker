@@ -11,11 +11,6 @@ export const selectStepState = createSelector(
   (state) => state.step
 );
 
-export const selectEmailExistsState = createSelector(
-  selectAuthState,
-  (state) => state.emailExists
-);
-
 export const selectLoadingState = createSelector(
   selectAuthState,
   (state) => state.loading
