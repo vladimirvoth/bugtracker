@@ -1,11 +1,7 @@
-<div
-  *ngIf="pageType == 'B' || pageType == 'C'"
-  class="bg-image"
-  [ngClass]="{
-    'bg-image__first': pageType == 'B',
-    'bg-image__second': pageType == 'C'
-  }"
-></div>
-<app-navbar *ngIf="pageType == 'A'"></app-navbar>
-
-<router-outlet></router-outlet>
+<div class="grid-container">
+  <app-side-navbar class="side-navbar-wrapper"></app-side-navbar>
+  <main class="main-content-wrapper">
+    <router-outlet></router-outlet>
+  </main>
+  <app-footer class="footer-wrapper">Footer</app-footer>
+</div>

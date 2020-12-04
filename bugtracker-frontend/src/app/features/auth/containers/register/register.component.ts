@@ -1,7 +1,4 @@
-import { filter, map } from 'rxjs/operators';
-
-import { Component, Optional } from '@angular/core';
-import { LayoutComponent } from '@core/containers/layout/layout.component';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { RegisterForm } from '../../models/form';
@@ -20,12 +17,7 @@ export class RegisterComponent {
   loading$ = this.store.select(selectLoadingState);
   step$ = this.store.select(selectStepState);
 
-  constructor(
-    private store: Store<fromAuth.State>,
-    @Optional() private layout: LayoutComponent
-  ) {
-    this.layout.pageType = 'C';
-  }
+  constructor(private store: Store<fromAuth.State>) {}
 
   continue() {
     this.store.dispatch(checkEmailExists({ email: this.form.email }));
@@ -39,9 +31,5 @@ export class RegisterComponent {
         username: this.form.username
       })
     );
-  }
-
-  ngOnDestroy() {
-    this.layout.resetPageType();
   }
 }

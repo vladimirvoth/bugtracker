@@ -3,6 +3,16 @@
 :host {
   display: block;
 
+  .bg-image {
+    height: 100vh;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    filter: blur(3px);
+    background-image: url('../../../../../assets/images/background_2.jpg');
+  }
+
   .register {
     position: absolute;
     left: 50%;
@@ -11,7 +21,7 @@
     width: 500px;
     box-shadow: $bs-standard;
     border-radius: $br-normal;
-    background-color: $c1-bg-color;
+    background-color: $t1-bg-color-light;
 
     &__step {
       padding: 2rem 3rem;

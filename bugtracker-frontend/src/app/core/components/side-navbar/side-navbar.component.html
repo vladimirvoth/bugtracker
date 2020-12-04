@@ -1,0 +1,47 @@
+<nav class="side-navbar">
+  <img
+    class="side-navbar__logo"
+    src="/assets/svg/logo.svg"
+    alt="Bugtracker Logo"
+  />
+  <ul class="side-navbar__list">
+    <li class="side-navbar__list-item">
+      <a class="side-navbar__list-link" href="/dashboard"
+        ><fa-icon [icon]="faHome"></fa-icon
+      ></a>
+    </li>
+  </ul>
+  <div class="side-navbar__bottom-container">
+    <ul class="side-navbar__list">
+      <li class="side-navbar__list-item">
+        <a class="side-navbar__list-link" href="#"
+          ><fa-icon [icon]="faCog"></fa-icon
+        ></a>
+      </li>
+      <li class="side-navbar__list-item">
+        <a class="side-navbar__list-link" href="#"
+          ><fa-icon [icon]="faQuestion"></fa-icon
+        ></a>
+      </li>
+    </ul>
+    <div *ngIf="!(loading$ | async)" class="side-navbar__extend">
+      <img
+        class="side-navbar__profile-picture"
+        [src]="(user$ | async).picture || '/assets/images/blank-profile.png'"
+        alt="{{ (user$ | async).username }}"
+      />
+      <div class="side-navbar__extend-container">
+        <!-- <div class="side-navbar__extend-content"> -->
+        <span class="p-2 text-dark">Hello, {{ (user$ | async).username }}</span>
+        <hr />
+        <a
+          class="p-2 text-dark font-weight-bold"
+          href="#"
+          (click)="logout($event)"
+          >Logout</a
+        >
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+</nav>

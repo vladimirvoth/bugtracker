@@ -4,9 +4,9 @@
 .ng-invalid.required.ng-dirty,
 .ng-invalid[required].ng-touched,
 .ng-invalid.required.ng-touched {
-  border: 1px solid $c1-error-color;
+  border: 1px solid $t1-error-color;
 }
 
 .toast-error {
-  background-color: $c1-error-color;
+  background-color: $t1-error-color;
 }

@@ -1,5 +1,4 @@
-import { Component, Optional } from '@angular/core';
-import { LayoutComponent } from '@core/containers/layout/layout.component';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { ResetPasswordForm } from '../../models/form';
@@ -17,12 +16,7 @@ export class ResetPasswordComponent {
 
   loading$ = this.store.select(selectLoadingState);
 
-  constructor(
-    private store: Store<fromAuth.State>,
-    @Optional() private layout: LayoutComponent
-  ) {
-    this.layout.pageType = 'B';
-  }
+  constructor(private store: Store<fromAuth.State>) {}
 
   resetPassword() {
     this.store.dispatch(resetPassword({ email: this.form.email }));

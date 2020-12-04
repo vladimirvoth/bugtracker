@@ -3,6 +3,16 @@
 :host {
   display: block;
 
+  .bg-image {
+    height: 100vh;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    filter: blur(3px);
+    background-image: url('../../../../../assets/images/background_1.jpg');
+  }
+
   .login {
     position: absolute;
     left: 50%;
@@ -10,7 +20,7 @@
     transform: translate(-50%, -50%);
     width: 500px;
     padding: 2rem 3rem;
-    background-color: $c1-bg-color;
+    background-color: $t1-bg-color-light;
     box-shadow: $bs-standard;
     border-radius: $br-normal;
 

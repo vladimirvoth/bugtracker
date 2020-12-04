@@ -6,7 +6,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
+import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SideNavbarComponent } from './components/side-navbar/side-navbar.component';
 import { HomeComponent } from './containers/home/home.component';
 import { LayoutComponent } from './containers/layout/layout.component';
 import * as CoreState from './store/index';
@@ -14,7 +16,13 @@ import { ToastsEffects } from './store/toasts/toasts.effects';
 import { UserEffects } from './store/user/user.effects';
 
 @NgModule({
-  declarations: [HomeComponent, NavbarComponent, LayoutComponent],
+  declarations: [
+    HomeComponent,
+    NavbarComponent,
+    LayoutComponent,
+    SideNavbarComponent,
+    FooterComponent
+  ],
   imports: [
     CommonModule,
     FontAwesomeModule,

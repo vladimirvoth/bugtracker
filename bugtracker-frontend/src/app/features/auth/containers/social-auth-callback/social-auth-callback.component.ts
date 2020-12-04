@@ -1,5 +1,4 @@
-import { Component, OnInit, Optional } from '@angular/core';
-import { LayoutComponent } from '@core/containers/layout/layout.component';
+import { Component, OnInit } from '@angular/core';
 
 import { environment } from '../../../../../environments/environment';
 
@@ -9,9 +8,7 @@ import { environment } from '../../../../../environments/environment';
   styleUrls: ['./social-auth-callback.component.scss']
 })
 export class SocialAuthCallbackComponent implements OnInit {
-  constructor(@Optional() private layout: LayoutComponent) {
-    this.layout.pageType = 'D';
-  }
+  constructor() {}
 
   ngOnInit(): void {
     const token = this.getJWTCookie();
@@ -42,9 +39,5 @@ export class SocialAuthCallbackComponent implements OnInit {
   migrateJWTtoken(token) {
     localStorage.setItem('token', JSON.stringify(token));
     document.cookie = 'JWT=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-  }
-
-  ngOnDestroy() {
-    this.layout.resetPageType();
   }
 }

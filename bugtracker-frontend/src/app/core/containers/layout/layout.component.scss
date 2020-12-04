@@ -3,20 +3,27 @@
 :host {
   display: block;
 
-  .bg-image {
-    height: 100vh;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    filter: blur(3px);
+  .grid-container {
+    display: grid;
+    grid-template-areas:
+      'sidenav main'
+      'sidenav footer';
 
-    &__first {
-      background-image: url('../../../../assets/images/background_1.jpg');
-    }
+    grid-template-columns: 80px auto;
+    grid-template-rows: auto 48px;
+    min-height: 100vh;
+  }
 
-    &__second {
-      background-image: url('../../../../assets/images/background_2.jpg');
-    }
+  .side-navbar-wrapper {
+    grid-area: sidenav;
+  }
+
+  .main-content-wrapper {
+    grid-area: main;
+    padding: 8px;
+  }
+
+  .footer-wrapper {
+    grid-area: footer;
   }
 }
