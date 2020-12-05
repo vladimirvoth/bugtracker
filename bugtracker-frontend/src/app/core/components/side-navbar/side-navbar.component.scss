@@ -48,6 +48,7 @@
       width: 50px;
       border: 1px solid $white;
       border-radius: $br-round-100;
+      cursor: pointer;
     }
 
     &__extend {
@@ -55,10 +56,10 @@
       display: inline-block;
       width: 80px;
       text-align: center;
-      cursor: pointer;
 
       &:hover .side-navbar__extend-container {
-        visibility: visible;
+        animation: 0.5s visibilityFadeIn;
+        animation-fill-mode: forwards;
       }
     }
 
@@ -74,6 +75,16 @@
       box-shadow: $bs-standard;
       text-align: center;
       background-color: $t1-bg-color-light;
+    }
+
+    &__extend-link {
+      display: inline-block;
+      width: 100%;
+
+      &:hover {
+        text-decoration: none;
+        background-color: $light-grey;
+      }
     }
   }
 }

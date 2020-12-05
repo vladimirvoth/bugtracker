@@ -31,16 +31,14 @@
         alt="{{ (user$ | async).username }}"
       />
       <div class="side-navbar__extend-container">
-        <!-- <div class="side-navbar__extend-content"> -->
         <span class="p-2 text-dark">Hello, {{ (user$ | async).username }}</span>
         <hr />
         <a
-          class="p-2 text-dark font-weight-bold"
+          class="p-2 text-dark font-weight-bold side-navbar__extend-link"
           href="#"
           (click)="logout($event)"
           >Logout</a
         >
-        <!-- </div> -->
       </div>
     </div>
   </div>
