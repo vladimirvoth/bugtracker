@@ -7,6 +7,8 @@ const logger = require('morgan');
 const passport = require('passport');
 const createError = require('http-errors');
 const sslRedirect = require('heroku-ssl-redirect').default;
+const auth = require('basic-auth');
+const { checkBasicAuth } = require('./helper');
 
 require('dotenv').config();
 
@@ -53,6 +55,20 @@ app.get('*', (req, res) => {
 app.use((req, res, next) => {
   next(createError(404));
 });
+
+if (process.env.HOST !== 'http://localhost:8080') {
+  app.use((req, res, next) => {
+    var credentials = auth(req);
+
+    if (!credentials || !checkBasicAuth(credentials.name, credentials.pass)) {
+      res.statusCode = 401;
+      res.setHeader('WWW-Authenticate', 'Basic realm="example"');
+      res.end('Access denied');
+    } else {
+      next();
+    }
+  });
+}
 
 app.listen(port, () => {
   console.log('Server started on port ' + port);

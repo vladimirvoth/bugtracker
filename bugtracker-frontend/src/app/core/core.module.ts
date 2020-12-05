@@ -14,6 +14,9 @@ import { LayoutComponent } from './containers/layout/layout.component';
 import * as CoreState from './store/index';
 import { ToastsEffects } from './store/toasts/toasts.effects';
 import { UserEffects } from './store/user/user.effects';
+import { LegalComponent } from './containers/legal/legal.component';
+import { DataPrivacyComponent } from './containers/data-privacy/data-privacy.component';
+import { ImprintComponent } from './containers/imprint/imprint.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { UserEffects } from './store/user/user.effects';
     NavbarComponent,
     LayoutComponent,
     SideNavbarComponent,
-    FooterComponent
+    FooterComponent,
+    LegalComponent,
+    DataPrivacyComponent,
+    ImprintComponent
   ],
   imports: [
     CommonModule,

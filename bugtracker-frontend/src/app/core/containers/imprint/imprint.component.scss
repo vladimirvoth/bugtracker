@@ -1,0 +1,20 @@
+@import '../../../../styles/globals/vars.scss';
+
+:host {
+  display: block;
+  text-align: center;
+
+  .imprint {
+    padding: 1rem 4rem;
+
+    h1 {
+      margin: 1rem 2rem;
+      font-size: $fs-h1;
+    }
+
+    h2 {
+      margin: 1rem;
+      font-size: $fs-h2;
+    }
+  }
+}
