@@ -6,7 +6,10 @@
   />
   <ul class="side-navbar__list">
     <li class="side-navbar__list-item">
-      <a class="side-navbar__list-link" href="/dashboard"
+      <a
+        class="side-navbar__list-link"
+        routerLink="/dashboard"
+        routerLinkActive="active-link"
         ><fa-icon [icon]="faHome"></fa-icon
       ></a>
     </li>
@@ -14,12 +17,18 @@
   <div class="side-navbar__bottom-container">
     <ul class="side-navbar__list">
       <li class="side-navbar__list-item">
-        <a class="side-navbar__list-link" href="#"
+        <a
+          class="side-navbar__list-link"
+          routerLink="/settings"
+          routerLinkActive="active-link"
           ><fa-icon [icon]="faCog"></fa-icon
         ></a>
       </li>
       <li class="side-navbar__list-item">
-        <a class="side-navbar__list-link" href="#"
+        <a
+          class="side-navbar__list-link"
+          routerLink="/faq"
+          routerLinkActive="active-link"
           ><fa-icon [icon]="faQuestion"></fa-icon
         ></a>
       </li>
