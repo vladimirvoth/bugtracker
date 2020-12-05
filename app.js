@@ -43,20 +43,8 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./config/passport')(passport);
-
-app.use('/auth', authRouter);
-app.use('/user', userRouter);
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
-});
-
-app.use((req, res, next) => {
-  next(createError(404));
-});
-
 if (process.env.HOST !== 'http://localhost:8080') {
+  console.log('basic Auth');
   app.use((req, res, next) => {
     var credentials = auth(req);
 
@@ -69,6 +57,19 @@ if (process.env.HOST !== 'http://localhost:8080') {
     }
   });
 }
+
+require('./config/passport')(passport);
+
+app.use('/auth', authRouter);
+app.use('/user', userRouter);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
+app.use((req, res, next) => {
+  next(createError(404));
+});
 
 app.listen(port, () => {
   console.log('Server started on port ' + port);
