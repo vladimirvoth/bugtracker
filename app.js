@@ -7,8 +7,7 @@ const logger = require('morgan');
 const passport = require('passport');
 const createError = require('http-errors');
 const sslRedirect = require('heroku-ssl-redirect').default;
-const auth = require('basic-auth');
-const { checkBasicAuth } = require('./helper');
+const basicAuth = require('express-basic-auth');
 
 require('dotenv').config();
 
@@ -35,6 +34,15 @@ mongoose.connection.on('connected', () => {
 const app = express();
 const port = process.env.PORT || 8080;
 
+if (process.env.HOST !== 'http://localhost:8080') {
+  app.use(
+    basicAuth({
+      users: { user: process.env.BASICAUTHPASSWORD },
+      challenge: true
+    })
+  );
+}
+
 app.use(sslRedirect());
 app.use(logger('dev'));
 app.use(cors());
@@ -42,21 +50,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
-
-if (process.env.HOST !== 'http://localhost:8080') {
-  console.log('basic Auth');
-  app.use((req, res, next) => {
-    var credentials = auth(req);
-
-    if (!credentials || !checkBasicAuth(credentials.name, credentials.pass)) {
-      res.statusCode = 401;
-      res.setHeader('WWW-Authenticate', 'Basic realm="example"');
-      res.end('Access denied');
-    } else {
-      next();
-    }
-  });
-}
 
 require('./config/passport')(passport);
 

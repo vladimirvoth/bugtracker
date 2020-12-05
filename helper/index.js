@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 exports.createRandomString = (length) => {
   let result = '';
   const characters =
@@ -38,13 +36,4 @@ exports.validURL = (str) => {
     'i'
   );
   return !!pattern.test(str);
-};
-
-exports.checkBasicAuth = (name, pass) => {
-  let valid = true;
-
-  valid = compare(name, process.env.BASICAUTHPASSWORD) && valid;
-  valid = compare(pass, process.env.BASICAUTHPASSWORD) && valid;
-
-  return valid;
 };
