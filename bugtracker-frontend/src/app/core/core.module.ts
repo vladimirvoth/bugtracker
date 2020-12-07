@@ -9,14 +9,16 @@ import { StoreModule } from '@ngrx/store';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SideNavbarComponent } from './components/side-navbar/side-navbar.component';
+import { DataPrivacyComponent } from './containers/data-privacy/data-privacy.component';
 import { HomeComponent } from './containers/home/home.component';
+import { ImprintComponent } from './containers/imprint/imprint.component';
 import { LayoutComponent } from './containers/layout/layout.component';
+import { LegalComponent } from './containers/legal/legal.component';
 import * as CoreState from './store/index';
 import { ToastsEffects } from './store/toasts/toasts.effects';
 import { UserEffects } from './store/user/user.effects';
-import { LegalComponent } from './containers/legal/legal.component';
-import { DataPrivacyComponent } from './containers/data-privacy/data-privacy.component';
-import { ImprintComponent } from './containers/imprint/imprint.component';
+import { ModalComponent } from './containers/modal/modal.component';
+import { ModalContentComponent } from './components/modal-content/modal-content.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { ImprintComponent } from './containers/imprint/imprint.component';
     FooterComponent,
     LegalComponent,
     DataPrivacyComponent,
-    ImprintComponent
+    ImprintComponent,
+    ModalComponent,
+    ModalContentComponent
   ],
   imports: [
     CommonModule,
