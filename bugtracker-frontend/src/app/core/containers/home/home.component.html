@@ -1,5 +1,28 @@
 <app-navbar></app-navbar>
 
-<p>home works!</p>
+<div class="container stage">
+  <div class="row">
+    <div class="col-sm">
+      <h1 class="stage__headline">
+        Track bugs and tasks as easy as it might be.
+      </h1>
+      <p class="stage__description">
+        It's free! Start in no time! Just get things done without hazzle.
+      </p>
+      <a class="btn btn-primary stage__register-btn" href="/auth/register"
+        >Get Started For Free <fa-icon [icon]="faAngleRight"></fa-icon>
+      </a>
+    </div>
+    <div class="col-sm">
+      <img
+        class="stage__image"
+        src="/assets/svg/index-stage.svg"
+        alt="Bugtracker"
+      />
+    </div>
+  </div>
+</div>
 
-<app-modal></app-modal>
+<div class="container testimonials"></div>
+
+<app-footer></app-footer>

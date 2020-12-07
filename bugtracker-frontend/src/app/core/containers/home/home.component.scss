@@ -1,0 +1,58 @@
+@import '../../../../styles/globals/vars.scss';
+@import '../../../../styles/globals/mixins.scss';
+
+:host {
+  display: block;
+
+  .stage {
+    margin: 6rem auto 2rem;
+
+    @include smartphone {
+      margin: 0;
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    &__image {
+      width: 90%;
+
+      @include smartphone {
+        width: 60%;
+        display: block;
+        margin: 2rem auto;
+      }
+    }
+
+    &__headline {
+      margin-top: 4rem;
+      font-size: 2rem;
+      line-height: 2.5rem;
+      text-align: left;
+
+      @include smartphone {
+        text-align: center;
+      }
+    }
+
+    &__description {
+      margin-bottom: 2rem;
+      font-size: 1.4rem;
+      line-height: 2.5rem;
+      color: $fs-color-secondary;
+    }
+
+    &__register-btn {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      border-color: #ff0476;
+      background-color: #ff0476;
+    }
+  }
+
+  .testimonials {
+    height: 300px;
+    width: 100%;
+    background-color: $t1-bg-color-dark;
+  }
+}
