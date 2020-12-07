@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): Observable<boolean> | boolean {
     if (!this.authService.loggedIn) {
-      // this.authService.logout();
+      this.authService.logout();
 
       return false;
     }

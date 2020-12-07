@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from '@core/core.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -28,7 +27,6 @@ import { AuthInterceptor } from './features/auth/services/auth-interceptor.servi
       maxAge: 25,
       logOnly: !environment.production
     }),
-    NgbModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
