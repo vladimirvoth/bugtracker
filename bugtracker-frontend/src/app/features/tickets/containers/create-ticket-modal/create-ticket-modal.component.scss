@@ -1,0 +1,10 @@
+@import '../../../../../styles/globals/vars.scss';
+@import '../../../../../styles/globals/mixins.scss';
+
+:host {
+  display: block;
+
+  .ticket-form {
+    padding: 0 2rem;
+  }
+}

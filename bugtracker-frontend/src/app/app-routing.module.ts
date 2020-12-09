@@ -23,6 +23,14 @@ const routes: Routes = [
             (m) => m.DashboardModule
           ),
         canActivate: [AuthGuard]
+      },
+      {
+        path: 'tickets',
+        loadChildren: () =>
+          import('./features/tickets/tickets.module').then(
+            (m) => m.TicketsModule
+          ),
+        canActivate: [AuthGuard]
       }
     ]
   },

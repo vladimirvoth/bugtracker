@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 
 const User = require('../models/User');
-const { createRandomString } = require('../helper');
+const { createRandomString } = require('../helpers');
 const content = require('../content');
 
 require('dotenv').config();

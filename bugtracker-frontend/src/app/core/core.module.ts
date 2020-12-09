@@ -17,8 +17,6 @@ import { LegalComponent } from './containers/legal/legal.component';
 import * as CoreState from './store/index';
 import { ToastsEffects } from './store/toasts/toasts.effects';
 import { UserEffects } from './store/user/user.effects';
-import { ModalComponent } from './containers/modal/modal.component';
-import { ModalContentComponent } from './components/modal-content/modal-content.component';
 
 @NgModule({
   declarations: [
@@ -29,9 +27,7 @@ import { ModalContentComponent } from './components/modal-content/modal-content.
     FooterComponent,
     LegalComponent,
     DataPrivacyComponent,
-    ImprintComponent,
-    ModalComponent,
-    ModalContentComponent
+    ImprintComponent
   ],
   imports: [
     CommonModule,

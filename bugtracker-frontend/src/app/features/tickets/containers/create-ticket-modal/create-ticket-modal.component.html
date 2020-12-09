@@ -1,0 +1,100 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{ title }}</h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <!-- <ul *ngIf="list.length">
+    <li *ngFor="let item of list">{{ item }}</li>
+  </ul> -->
+
+  <form
+    class="ticket-form"
+    novalidate
+    (ngSubmit)="onSubmit()"
+    [formGroup]="ticketForm"
+  >
+    <div class="form-group">
+      <label class="register__label" for="email">Title</label>
+      <input
+        type="email"
+        class="form-control"
+        required
+        formControlName="title"
+      />
+      <span
+        class="error-feedback"
+        *ngIf="
+          ticketForm.get('title').hasError('required') &&
+          ticketForm.get('title').touched
+        "
+      >
+        Title is required!
+      </span>
+    </div>
+    <div class="form-group">
+      <label class="register__label" for="email">Description</label>
+      <textarea
+        class="form-control"
+        cols="30"
+        rows="10"
+        required
+        formControlName="description"
+      ></textarea>
+
+      <span
+        class="error-feedback"
+        *ngIf="
+          ticketForm.get('description').hasError('required') &&
+          ticketForm.get('description').touched
+        "
+      >
+        Description is required!
+      </span>
+    </div>
+    <div class="form-group">
+      <label class="register__label" for="email">Files</label>
+      <input type="email" class="form-control" formControlName="files" />
+      <span
+        class="error-feedback"
+        *ngIf="
+          ticketForm.get('files').hasError('maxLenght') &&
+          ticketForm.get('files').touched
+        "
+      >
+        Too many files!
+      </span>
+    </div>
+    <div class="form-group">
+      <label class="register__label" for="email">Tags</label>
+      <input type="email" class="form-control" formControlName="tags" />
+      <span
+        class="error-feedback"
+        *ngIf="
+          ticketForm.get('tags').hasError('maxLenght') &&
+          ticketForm.get('tags').touched
+        "
+      >
+        Too many tags!
+      </span>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="ticketForm.invalid"
+    >
+      Create Ticket
+    </button>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">
+    {{ closeBtnName }}
+  </button>
+</div>
