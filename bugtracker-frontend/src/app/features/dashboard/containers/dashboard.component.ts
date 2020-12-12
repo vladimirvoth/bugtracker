@@ -19,20 +19,6 @@ export class DashboardComponent {
   constructor(private modalService: BsModalService) {}
 
   openModalWithComponent() {
-    const initialState = {
-      list: [
-        'Open a modal with component',
-        'Pass your data',
-        'Do something else',
-        '...'
-      ],
-      title: 'Modal with component'
-    };
-
-    this.bsModalRef = this.modalService.show(CreateTicketModalComponent, {
-      initialState
-    });
-
-    this.bsModalRef.content.closeBtnName = 'Close';
+    this.bsModalRef = this.modalService.show(CreateTicketModalComponent);
   }
 }

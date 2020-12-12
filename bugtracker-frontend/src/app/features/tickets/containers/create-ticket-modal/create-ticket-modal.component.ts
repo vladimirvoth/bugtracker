@@ -1,6 +1,6 @@
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ticketForm } from '../../models/form';
 
@@ -9,17 +9,11 @@ import { ticketForm } from '../../models/form';
   templateUrl: './create-ticket-modal.component.html',
   styleUrls: ['./create-ticket-modal.component.scss']
 })
-export class CreateTicketModalComponent implements OnInit {
-  title: string;
+export class CreateTicketModalComponent {
   closeBtnName: string;
-  list: any[] = [];
   ticketForm = ticketForm;
 
   constructor(public bsModalRef: BsModalRef) {}
-
-  ngOnInit() {
-    this.list.push('PROFIT!!!');
-  }
 
   onSubmit() {
     console.log(this.ticketForm.value);

@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">{{ title }}</h4>
+  <h4 class="modal-title pull-left">Create a new task!</h4>
   <button
     type="button"
     class="close pull-right"
@@ -10,10 +10,6 @@
   </button>
 </div>
 <div class="modal-body">
-  <!-- <ul *ngIf="list.length">
-    <li *ngFor="let item of list">{{ item }}</li>
-  </ul> -->
-
   <form
     class="ticket-form"
     novalidate
@@ -59,19 +55,6 @@
       </span>
     </div>
     <div class="form-group">
-      <label class="register__label" for="email">Files</label>
-      <input type="email" class="form-control" formControlName="files" />
-      <span
-        class="error-feedback"
-        *ngIf="
-          ticketForm.get('files').hasError('maxLenght') &&
-          ticketForm.get('files').touched
-        "
-      >
-        Too many files!
-      </span>
-    </div>
-    <div class="form-group">
       <label class="register__label" for="email">Tags</label>
       <input type="email" class="form-control" formControlName="tags" />
       <span
@@ -95,6 +78,6 @@
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">
-    {{ closeBtnName }}
+    Close
   </button>
 </div>
