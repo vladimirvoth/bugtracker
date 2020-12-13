@@ -15,6 +15,13 @@
   margin-top: 0 !important;
   border-bottom-left-radius: 0.25rem !important;
   border-bottom-right-radius: 0.25rem !important;
+  color: $fs-color-form;
+  border-color: $t1-border-color;
+}
+
+.angular-editor-placeholder {
+  color: $fs-color-form !important;
+  font-size: 1rem !important;
 }
 
 .angular-editor-toolbar {

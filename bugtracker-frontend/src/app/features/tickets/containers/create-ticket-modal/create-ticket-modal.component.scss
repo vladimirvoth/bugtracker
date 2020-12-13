@@ -4,7 +4,23 @@
 :host {
   display: block;
 
+  .modal-title {
+    margin-left: 2rem;
+  }
+
   .ticket-form {
     padding: 0 2rem;
+
+    &__select {
+      width: 250px;
+      padding: 0.5rem;
+      border-color: $t1-border-color;
+      border-radius: 4px;
+      color: $fs-color-form;
+    }
+
+    &__button-wrapper {
+      text-align: right;
+    }
   }
 }

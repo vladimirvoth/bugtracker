@@ -15,7 +15,14 @@ export class CreateTicketModalComponent {
   ticketForm = ticketForm;
   editorConfig = editorConfig;
 
+  tickeTypes: Array<string> = ['story', 'task', 'bug'];
+  priorities: Array<string> = ['standard', 'high', 'very high', 'blocker'];
+
   constructor(public bsModalRef: BsModalRef) {}
+
+  changeSelect(event, formControl) {
+    this.ticketForm.get(formControl).setValue(event.target.value);
+  }
 
   onSubmit() {
     console.log(this.ticketForm.value);

@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">Create a new task!</h4>
+  <h4 class="modal-title">Create a new ticket!</h4>
   <button
     type="button"
     class="close pull-right"
@@ -17,12 +17,12 @@
     [formGroup]="ticketForm"
   >
     <div class="form-group">
-      <label class="register__label" for="email">Title</label>
       <input
         type="email"
         class="form-control"
         required
         formControlName="title"
+        placeholder="Enter the ticket title here..."
       />
       <span
         class="error-feedback"
@@ -35,7 +35,48 @@
       </span>
     </div>
     <div class="form-group">
-      <label class="register__label" for="email">Description</label>
+      <select
+        class="form-select ticket-form__select"
+        (change)="changeSelect($event, 'ticketType')"
+        formControlName="ticketType"
+      >
+        <option value="" disabled>Choose a type</option>
+        <option *ngFor="let tickeType of tickeTypes">
+          {{ tickeType }}
+        </option>
+      </select>
+      <span
+        class="error-feedback"
+        *ngIf="
+          ticketForm.get('ticketType').hasError('required') &&
+          ticketForm.get('ticketType').touched
+        "
+      >
+        Type is required!
+      </span>
+    </div>
+    <div class="form-group">
+      <select
+        class="form-select ticket-form__select"
+        (change)="changeSelect($event, 'priority')"
+        formControlName="priority"
+      >
+        <option value="" disabled>Choose a priority</option>
+        <option *ngFor="let priority of priorities">
+          {{ priority }}
+        </option>
+      </select>
+      <span
+        class="error-feedback"
+        *ngIf="
+          ticketForm.get('priority').hasError('required') &&
+          ticketForm.get('priority').touched
+        "
+      >
+        Priority is required!
+      </span>
+    </div>
+    <div class="form-group">
       <angular-editor
         formControlName="description"
         [config]="editorConfig"
@@ -50,30 +91,14 @@
         Description is required!
       </span>
     </div>
-    <div class="form-group">
-      <label class="register__label" for="email">Tags</label>
-      <input type="email" class="form-control" formControlName="tags" />
-      <span
-        class="error-feedback"
-        *ngIf="
-          ticketForm.get('tags').hasError('maxLenght') &&
-          ticketForm.get('tags').touched
-        "
+    <div class="form-group ticket-form__button-wrapper">
+      <button
+        type="submit"
+        class="btn btn-primary ticket-form__button"
+        [disabled]="ticketForm.invalid"
       >
-        Too many tags!
-      </span>
+        Create Ticket
+      </button>
     </div>
-    <button
-      type="submit"
-      class="btn btn-primary"
-      [disabled]="ticketForm.invalid"
-    >
-      Create Ticket
-    </button>
   </form>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">
-    Close
-  </button>
 </div>
