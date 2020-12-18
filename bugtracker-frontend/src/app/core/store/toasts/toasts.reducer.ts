@@ -1,15 +1,13 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer } from '@ngrx/store';
 
-import * as ToastsActions from './toasts.actions';
-
-export const toastsKey = 'toasts';
+export const toastsFeatureKey = 'toasts';
 
 export interface ToastsState {
   toasts: Array<{}>;
 }
 
 export interface State {
-  [toastsKey]: ToastsState;
+  [toastsFeatureKey]: ToastsState;
 }
 
 export const initialState: ToastsState = {

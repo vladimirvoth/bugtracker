@@ -3,7 +3,7 @@ import { createReducer, on } from '@ngrx/store';
 import { User } from './user';
 import * as UserActions from './user.actions';
 
-export const userKey = 'user';
+export const userFeatureKey = 'user';
 
 export interface UserState {
   user: User;
@@ -11,7 +11,7 @@ export interface UserState {
 }
 
 export interface State {
-  [userKey]: UserState;
+  [userFeatureKey]: UserState;
 }
 
 export const initialState: UserState = {

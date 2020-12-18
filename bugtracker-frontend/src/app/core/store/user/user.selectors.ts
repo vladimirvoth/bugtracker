@@ -6,12 +6,12 @@ export const selectUserState = createFeatureSelector<fromState.CoreState>(
   fromState.coreFeatureKey
 );
 
-export const selectUserSate = createSelector(
+export const selectUser = createSelector(
   selectUserState,
   (state) => state.user.user
 );
 
-export const selectLoadingState = createSelector(
+export const selectLoading = createSelector(
   selectUserState,
   (state) => state.user.loading
 );

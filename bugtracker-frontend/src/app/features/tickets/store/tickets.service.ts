@@ -4,15 +4,17 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { environment } from '../../../../environments/environment';
-import { User } from './user';
+import { Ticket } from '../models/ticket';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class TicketsService {
   constructor(private http: HttpClient) {}
 
-  getUser(): Observable<User> {
-    return this.http.get<User>(`${environment.baseUrl}/users`);
+  createTicket(ticket: Ticket): Observable<Ticket> {
+    return this.http.post<Ticket>(`${environment.baseUrl}/tickets`, {
+      ticket
+    });
   }
 }

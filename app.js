@@ -12,7 +12,8 @@ const basicAuth = require('express-basic-auth');
 require('dotenv').config();
 
 const authRouter = require('./routes/auth');
-const userRouter = require('./routes/user');
+const usersRouter = require('./routes/users');
+const ticketsRouter = require('./routes/tickets');
 
 /**
  *  Connect to MongoDB
@@ -54,7 +55,8 @@ app.use(passport.session());
 require('./config/passport')(passport);
 
 app.use('/auth', authRouter);
-app.use('/user', userRouter);
+app.use('/users', usersRouter);
+app.use('/tickets', ticketsRouter);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));

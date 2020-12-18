@@ -18,7 +18,7 @@
   >
     <div class="form-group">
       <input
-        type="email"
+        type="text"
         class="form-control"
         required
         formControlName="title"
@@ -37,19 +37,19 @@
     <div class="form-group">
       <select
         class="form-select ticket-form__select"
-        (change)="changeSelect($event, 'ticketType')"
-        formControlName="ticketType"
+        (change)="changeSelect($event, 'type')"
+        formControlName="type"
       >
         <option value="" disabled>Choose a type</option>
-        <option *ngFor="let tickeType of tickeTypes">
-          {{ tickeType }}
+        <option *ngFor="let type of types" [value]="type.key">
+          {{ type.value }}
         </option>
       </select>
       <span
         class="error-feedback"
         *ngIf="
-          ticketForm.get('ticketType').hasError('required') &&
-          ticketForm.get('ticketType').touched
+          ticketForm.get('type').hasError('required') &&
+          ticketForm.get('type').touched
         "
       >
         Type is required!
@@ -62,8 +62,8 @@
         formControlName="priority"
       >
         <option value="" disabled>Choose a priority</option>
-        <option *ngFor="let priority of priorities">
-          {{ priority }}
+        <option *ngFor="let priority of priorities" [value]="priority.key">
+          {{ priority.value }}
         </option>
       </select>
       <span
@@ -95,7 +95,7 @@
       <button
         type="submit"
         class="btn btn-primary ticket-form__button"
-        [disabled]="ticketForm.invalid"
+        [disabled]="ticketForm.invalid || (loading$ | async)"
       >
         Create Ticket
       </button>

@@ -6,12 +6,12 @@ export const selectAuthState = createFeatureSelector<fromAuth.AuthState>(
   fromAuth.authFeatureKey
 );
 
-export const selectStepState = createSelector(
+export const selectStep = createSelector(
   selectAuthState,
   (state) => state.step
 );
 
-export const selectLoadingState = createSelector(
+export const selectLoading = createSelector(
   selectAuthState,
   (state) => state.loading
 );

@@ -19,5 +19,11 @@
   "passwordRecoveryMailText": "Recover your password: ${passwordRecoveryUrl}",
   "passwordRecoverSuccess": "Password was reseted, please check your emails.",
   "passwordResetSuccess": "Your password was reseted. You can now login with your new password.",
-  "updateAccountSuccess": "Your account was updated successfully."
+  "updateAccountSuccess": "Your account was updated successfully.",
+  "tickets": {
+    "emptyTitle": "Title is required!",
+    "emptyType": "Type is required!",
+    "emptyPriority": "Priority is required!",
+    "emptyDescription": "Description is required!"
+  }
 }

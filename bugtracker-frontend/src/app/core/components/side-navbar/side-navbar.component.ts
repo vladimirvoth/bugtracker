@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 
 import { loadUser } from '../../store/user/user.actions';
 import * as fromUser from '../../store/user/user.reducer';
-import { selectLoadingState, selectUserSate } from '../../store/user/user.selector';
+import { selectLoading, selectUser } from '../../store/user/user.selectors';
 
 @Component({
   selector: 'app-side-navbar',
@@ -21,8 +21,8 @@ export class SideNavbarComponent {
 
   protected componentDestroyed$ = new Subject<void>();
 
-  loading$ = this.store.select(selectLoadingState);
-  user$ = this.store.select(selectUserSate);
+  loading$ = this.store.select(selectLoading);
+  user$ = this.store.select(selectUser);
 
   constructor(private store: Store<fromUser.State>) {
     if (localStorage.getItem('token') !== null) {

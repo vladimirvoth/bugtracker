@@ -1,9 +1,7 @@
 import { ToastrService } from 'ngx-toastr';
-import { EMPTY } from 'rxjs';
-import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import * as ToatsActions from './toasts.actions';

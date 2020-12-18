@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { ResetPasswordForm } from '../../models/form';
 import { resetPassword } from '../../store/auth.actions';
 import * as fromAuth from '../../store/auth.reducer';
-import { selectLoadingState } from '../../store/auth.selector';
+import { selectLoading } from '../../store/auth.selectors';
 
 @Component({
   selector: 'app-forgot-password',
@@ -14,7 +14,7 @@ import { selectLoadingState } from '../../store/auth.selector';
 export class ResetPasswordComponent {
   form = new ResetPasswordForm();
 
-  loading$ = this.store.select(selectLoadingState);
+  loading$ = this.store.select(selectLoading);
 
   constructor(private store: Store<fromAuth.State>) {}
 

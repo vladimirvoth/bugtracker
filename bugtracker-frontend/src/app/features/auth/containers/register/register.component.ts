@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { RegisterForm } from '../../models/form';
 import { checkEmailExists, register } from '../../store/auth.actions';
 import * as fromAuth from '../../store/auth.reducer';
-import { selectLoadingState, selectStepState } from '../../store/auth.selector';
+import { selectLoading, selectStep } from '../../store/auth.selectors';
 
 @Component({
   selector: 'app-register',
@@ -14,8 +14,8 @@ import { selectLoadingState, selectStepState } from '../../store/auth.selector';
 export class RegisterComponent {
   form = new RegisterForm();
 
-  loading$ = this.store.select(selectLoadingState);
-  step$ = this.store.select(selectStepState);
+  loading$ = this.store.select(selectLoading);
+  step$ = this.store.select(selectStep);
 
   constructor(private store: Store<fromAuth.State>) {}
 
