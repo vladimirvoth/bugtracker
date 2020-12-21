@@ -61,4 +61,26 @@ router.post(
   }
 );
 
+router.get(
+  '/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res, next) => {
+    const id = req.params.id;
+
+    Ticket.getTicketById(id, (err, ticket) => {
+      if (err) {
+        res.status(422).json({ msg: errors[0].msg });
+      }
+
+      if (ticket.created_by !== req.user.id) {
+        return res.status(401).json({
+          msg: content.loginError
+        });
+      } else {
+        res.json(ticket);
+      }
+    });
+  }
+);
+
 module.exports = router;

@@ -29,6 +29,15 @@ export const ticketsReducer = createReducer(
     tickets: [...state.tickets, ticket],
     loading: false
   })),
+  on(TicketsActions.getTicket, (state: TicketsState) => ({
+    ...state,
+    loading: true
+  })),
+  on(TicketsActions.getTicketSuccess, (state: TicketsState, { ticket }) => ({
+    ...state,
+    tickets: [...state.tickets, ticket],
+    loading: false
+  })),
   on(TicketsActions.flush, (state: TicketsState) => ({
     ...state,
     tickets: [],

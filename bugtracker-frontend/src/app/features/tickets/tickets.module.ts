@@ -16,16 +16,7 @@ import { TicketsService } from './store/tickets.service';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'create',
-    pathMatch: 'full'
-  },
-  {
-    path: 'create',
-    component: CreateTicketModalComponent
-  },
-  {
-    path: 'update',
+    path: 'update/:id',
     component: UpdateTicketComponent
   }
 ];

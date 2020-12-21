@@ -12,4 +12,14 @@ export const createTicketSuccess = createAction(
   props<{ ticket: Ticket }>()
 );
 
+export const getTicket = createAction(
+  '[Tickets] Get Ticket',
+  props<{ id: string }>()
+);
+
+export const getTicketSuccess = createAction(
+  '[Tickets] Get Ticket Success',
+  props<{ ticket: Ticket }>()
+);
+
 export const flush = createAction('[Tickets] Flush');

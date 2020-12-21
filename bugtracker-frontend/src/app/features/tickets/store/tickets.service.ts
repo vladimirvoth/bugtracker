@@ -17,4 +17,8 @@ export class TicketsService {
       ticket
     });
   }
+
+  getTicket(id: string): Observable<Ticket> {
+    return this.http.get<Ticket>(`${environment.baseUrl}/tickets/${id}`);
+  }
 }
