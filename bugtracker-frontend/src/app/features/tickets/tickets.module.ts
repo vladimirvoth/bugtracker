@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { CoreModule } from '@core/core.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -29,7 +30,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     AngularEditorModule,
     StoreModule.forFeature(fromTickets.ticketsFeatureKey, fromTickets.reducer),
-    EffectsModule.forFeature([TicketsEffects])
+    EffectsModule.forFeature([TicketsEffects]),
+    CoreModule
   ],
   providers: [TicketsService]
 })

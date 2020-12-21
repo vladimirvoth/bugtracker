@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 
@@ -16,6 +17,12 @@ export class UpdateTicketComponent implements OnInit {
 
   tickets$ = this.store.select(selectTickets);
 
+  // Weg damit
+  name = 'Hello angular inline input';
+  cost = 100;
+
+  username = new FormControl('');
+
   constructor(
     private route: ActivatedRoute,
     private store: Store<fromTickets.State>
@@ -29,5 +36,10 @@ export class UpdateTicketComponent implements OnInit {
 
       this.tickets$.subscribe((tickets) => console.log('sub', tickets));
     });
+  }
+
+  saveCost(value) {
+    console.log('saveCost', value);
+    this.cost = value;
   }
 }
