@@ -1,6 +1,21 @@
 <p>update-ticket works!</p>
 
-<app-edit-input
+<div class="edit">
+  <app-inline-edit
+    [control]="username"
+    (focusOut)="saveCost($event)"
+  ></app-inline-edit>
+</div>
+
+<app-inline-edit
   [control]="username"
+  [type]="'editor'"
   (focusOut)="saveCost($event)"
-></app-edit-input>
+></app-inline-edit>
+
+<app-inline-edit
+  [control]="username"
+  [type]="'select'"
+  [selectItems]="types"
+  (focusOut)="saveCost($event)"
+></app-inline-edit>

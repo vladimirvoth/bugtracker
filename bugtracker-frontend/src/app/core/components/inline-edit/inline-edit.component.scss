@@ -1,0 +1,40 @@
+@import '../../../../styles/globals/vars.scss';
+
+:host {
+  display: block;
+
+  .inline-edit {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid transparent;
+
+    &:hover {
+      cursor: pointer;
+      border: 1px solid $t1-border-color;
+    }
+
+    &:hover .inline-edit__icon {
+      display: inline;
+    }
+
+    &__icon {
+      display: none;
+      float: right;
+      color: $fs-color-form;
+      font-size: 14px;
+    }
+
+    &__error {
+      position: relative;
+      left: 12px;
+      bottom: 8px;
+    }
+
+    &__select {
+      width: 250px;
+      padding: 0.5rem;
+      border-color: $t1-border-color;
+      border-radius: 4px;
+      color: $fs-color-form;
+    }
+  }
+}

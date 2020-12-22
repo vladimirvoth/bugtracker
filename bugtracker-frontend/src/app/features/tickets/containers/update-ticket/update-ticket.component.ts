@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 
@@ -18,10 +18,16 @@ export class UpdateTicketComponent implements OnInit {
   tickets$ = this.store.select(selectTickets);
 
   // Weg damit
-  name = 'Hello angular inline input';
-  cost = 100;
+  username = new FormControl('Test', [
+    Validators.required,
+    Validators.maxLength(5)
+  ]);
 
-  username = new FormControl('');
+  types = [
+    { key: 'story', value: 'Story' },
+    { key: 'task', value: 'Task' },
+    { key: 'bug', value: 'Bug' }
+  ];
 
   constructor(
     private route: ActivatedRoute,
@@ -34,12 +40,11 @@ export class UpdateTicketComponent implements OnInit {
 
       this.store.dispatch(getTicket({ id: params['id'] }));
 
-      this.tickets$.subscribe((tickets) => console.log('sub', tickets));
+      // this.tickets$.subscribe((tickets) => console.log('sub', tickets));
     });
   }
 
   saveCost(value) {
     console.log('saveCost', value);
-    this.cost = value;
   }
 }

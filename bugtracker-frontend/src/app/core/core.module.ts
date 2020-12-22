@@ -4,11 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthEffects } from '@features/auth/store/auth.effects';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import { EditInputComponent } from './components/edit-input/edit-input.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { InlineEditComponent } from './components/inline-edit/inline-edit.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SideNavbarComponent } from './components/side-navbar/side-navbar.component';
 import { DataPrivacyComponent } from './containers/data-privacy/data-privacy.component';
@@ -31,7 +32,7 @@ import { UserEffects } from './store/user/user.effects';
     LegalComponent,
     DataPrivacyComponent,
     ImprintComponent,
-    EditInputComponent,
+    InlineEditComponent,
     AutoFocusDirective
   ],
   imports: [
@@ -41,8 +42,9 @@ import { UserEffects } from './store/user/user.effects';
     EffectsModule.forFeature([ToastsEffects, UserEffects, AuthEffects]),
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularEditorModule
   ],
-  exports: [LayoutComponent, EditInputComponent]
+  exports: [LayoutComponent, InlineEditComponent]
 })
 export class CoreModule {}

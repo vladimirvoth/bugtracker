@@ -1,0 +1,9 @@
+@import '../../../../../styles/globals/vars.scss';
+
+:host {
+  display: block;
+
+  .edit {
+    width: 300px;
+  }
+}

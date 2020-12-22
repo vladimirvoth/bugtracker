@@ -1,0 +1,69 @@
+<div *ngIf="!editMode" (click)="editMode = true" class="inline-edit">
+  <ng-container *ngIf="type == 'select' && selectItems; else defaultTemplate">
+    {{ matchSelectTypeValue(control.value) }}
+  </ng-container>
+  <ng-template #defaultTemplate>
+    {{ control.value }}
+  </ng-template>
+  <fa-icon class="inline-edit__icon" [icon]="faPencilAlt"></fa-icon>
+</div>
+
+<ng-container *ngIf="editMode" [ngSwitch]="type">
+  <ng-container *ngSwitchCase="'editor'">
+    <angular-editor
+      [formControl]="control"
+      [config]="editorConfig"
+      (focusout)="onFocusOut()"
+      (keydown.enter)="$event.target.blur()"
+      appAutoFocus
+      ngDefaultControl
+    ></angular-editor>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'select'">
+    <select
+      class="form-select inline-edit__select"
+      [formControl]="control"
+      [config]="editorConfig"
+      (focusout)="onFocusOut()"
+      (keydown.enter)="$event.target.blur()"
+      appAutoFocus
+    >
+      <option *ngFor="let item of selectItems" [value]="item.key">
+        {{ item.value }}
+      </option>
+    </select>
+  </ng-container>
+
+  <ng-container *ngSwitchDefault>
+    <input
+      type="text"
+      [formControl]="control"
+      (focusout)="onFocusOut()"
+      (keydown.enter)="$event.target.blur()"
+      class="form-control"
+      appAutoFocus
+    />
+  </ng-container>
+</ng-container>
+
+<span
+  class="error-feedback inline-edit__error"
+  *ngIf="control.hasError('required') && control.touched"
+>
+  This field is required!
+</span>
+<span
+  class="error-feedback inline-edit__error"
+  *ngIf="control.hasError('maxlength') && control.touched"
+>
+  This field can't have more characters then
+  {{ control.errors?.maxlength?.requiredLength }}!
+</span>
+<span
+  class="error-feedback inline-edit__error"
+  *ngIf="control.hasError('minlength') && control.touched"
+>
+  This field can't have less characters then
+  {{ control.errors?.minlength?.requiredLength }}!
+</span>
