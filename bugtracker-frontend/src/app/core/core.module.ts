@@ -21,6 +21,7 @@ import { AutoFocusDirective } from './directives/auto-focus.directive';
 import * as CoreState from './store/index';
 import { ToastsEffects } from './store/toasts/toasts.effects';
 import { UserEffects } from './store/user/user.effects';
+import { SelectValuePipe } from './pipes/select-value.pipe';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { UserEffects } from './store/user/user.effects';
     DataPrivacyComponent,
     ImprintComponent,
     InlineEditComponent,
-    AutoFocusDirective
+    AutoFocusDirective,
+    SelectValuePipe
   ],
   imports: [
     CommonModule,

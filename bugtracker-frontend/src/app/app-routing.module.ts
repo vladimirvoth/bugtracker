@@ -23,9 +23,15 @@ const routes: Routes = [
             (m) => m.DashboardModule
           ),
         canActivate: [AuthGuard]
-      },
+      }
+    ]
+  },
+  {
+    path: 'tickets',
+    component: LayoutComponent,
+    children: [
       {
-        path: 'tickets',
+        path: '',
         loadChildren: () =>
           import('./features/tickets/tickets.module').then(
             (m) => m.TicketsModule

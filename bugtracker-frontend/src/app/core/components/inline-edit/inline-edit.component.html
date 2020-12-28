@@ -1,6 +1,6 @@
 <div *ngIf="!editMode" (click)="editMode = true" class="inline-edit">
   <ng-container *ngIf="type == 'select' && selectItems; else defaultTemplate">
-    {{ matchSelectTypeValue(control.value) }}
+    {{ control.value | selectValue: selectItems }}
   </ng-container>
   <ng-template #defaultTemplate>
     {{ control.value }}

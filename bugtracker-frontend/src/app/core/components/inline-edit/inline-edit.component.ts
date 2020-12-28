@@ -25,14 +25,4 @@ export class InlineEditComponent {
     this.focusOut.emit(this.control.value);
     this.editMode = false;
   }
-
-  // @Todo: Move into a directive
-  matchSelectTypeValue(value) {
-    const item = this.selectItems.find((item) => item.key === value);
-    if (item && item.value) {
-      return item.value;
-    } else {
-      return value;
-    }
-  }
 }

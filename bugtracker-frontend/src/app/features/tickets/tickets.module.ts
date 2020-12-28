@@ -17,7 +17,7 @@ import { TicketsService } from './store/tickets.service';
 
 const routes: Routes = [
   {
-    path: 'update/:id',
+    path: ':id',
     component: UpdateTicketComponent
   }
 ];
