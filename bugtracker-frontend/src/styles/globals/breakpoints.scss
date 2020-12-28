@@ -1,0 +1,7 @@
+$sm: 575.98px;
+
+@mixin breakpoint($device-width) {
+  @media (max-width: #{$device-width}) {
+    @content;
+  }
+}
