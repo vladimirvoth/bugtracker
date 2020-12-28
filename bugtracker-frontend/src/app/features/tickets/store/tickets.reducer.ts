@@ -1,3 +1,4 @@
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
 
 import { Ticket } from '../models/ticket';
@@ -5,18 +6,21 @@ import * as TicketsActions from './tickets.actions';
 
 export const ticketsFeatureKey = 'tickets';
 
-export interface TicketsState {
-  tickets: Ticket[];
+export interface TicketsState extends EntityState<Ticket> {
   loading: boolean;
 }
+
+export const adapter: EntityAdapter<Ticket> = createEntityAdapter<Ticket>({
+  selectId: (ticket) => ticket._id
+});
+
+export const initialState: TicketsState = adapter.getInitialState({
+  loading: false
+});
+
 export interface State {
   [ticketsFeatureKey]: TicketsState;
 }
-
-export const initialState: TicketsState = {
-  tickets: [],
-  loading: false
-};
 
 export const ticketsReducer = createReducer(
   initialState,
@@ -24,25 +28,19 @@ export const ticketsReducer = createReducer(
     ...state,
     loading: true
   })),
-  on(TicketsActions.createTicketSuccess, (state: TicketsState, { ticket }) => ({
-    ...state,
-    tickets: [...state.tickets, ticket],
-    loading: false
-  })),
+  on(TicketsActions.createTicketSuccess, (state, { ticket }) => {
+    return adapter.addOne(ticket, { ...state, loading: false });
+  }),
   on(TicketsActions.getTicket, (state: TicketsState) => ({
     ...state,
     loading: true
   })),
-  on(TicketsActions.getTicketSuccess, (state: TicketsState, { ticket }) => ({
-    ...state,
-    tickets: [...state.tickets, ticket],
-    loading: false
-  })),
-  on(TicketsActions.flush, (state: TicketsState) => ({
-    ...state,
-    tickets: [],
-    loading: false
-  }))
+  on(TicketsActions.getTicketSuccess, (state: TicketsState, { ticket }) => {
+    return adapter.addOne(ticket, { ...state, loading: false });
+  }),
+  on(TicketsActions.flush, (state: TicketsState) => {
+    return adapter.removeAll({ ...state, loading: false });
+  })
 );
 
 export function reducer(state: TicketsState | undefined, action: Action): any {

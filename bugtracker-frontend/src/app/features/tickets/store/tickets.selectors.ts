@@ -8,7 +8,7 @@ export const selectTicketsState = createFeatureSelector<fromTickets.TicketsState
 
 export const selectTickets = createSelector(
   selectTicketsState,
-  (state: fromTickets.TicketsState) => state.tickets
+  (state: fromTickets.TicketsState) => state
 );
 
 export const selectLoading = createSelector(
