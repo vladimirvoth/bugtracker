@@ -1,21 +1,31 @@
-<p>update-ticket works!</p>
-
-<div class="edit">
+<!-- <div class="edit">
   <app-inline-edit
-    [control]="username"
+    [control]="ticketForm.get('title')"
     (focusOut)="saveCost($event)"
   ></app-inline-edit>
-</div>
+</div> -->
 
 <app-inline-edit
-  [control]="username"
-  [type]="'editor'"
+  [control]="ticketForm.get('title')"
   (focusOut)="saveCost($event)"
 ></app-inline-edit>
 
 <app-inline-edit
-  [control]="username"
+  [control]="ticketForm.get('type')"
   [type]="'select'"
   [selectItems]="types"
+  (focusOut)="saveCost($event)"
+></app-inline-edit>
+
+<app-inline-edit
+  [control]="ticketForm.get('priority')"
+  [type]="'select'"
+  [selectItems]="priorities"
+  (focusOut)="saveCost($event)"
+></app-inline-edit>
+
+<app-inline-edit
+  [control]="ticketForm.get('description')"
+  [type]="'editor'"
   (focusOut)="saveCost($event)"
 ></app-inline-edit>

@@ -7,6 +7,7 @@ import * as TicketsActions from './tickets.actions';
 export const ticketsFeatureKey = 'tickets';
 
 export interface TicketsState extends EntityState<Ticket> {
+  selectedTicketId: string | null;
   loading: boolean;
 }
 
@@ -15,10 +16,11 @@ export const adapter: EntityAdapter<Ticket> = createEntityAdapter<Ticket>({
 });
 
 export const initialState: TicketsState = adapter.getInitialState({
+  selectedTicketId: null,
   loading: false
 });
 
-export interface State {
+export interface State extends EntityState<Ticket> {
   [ticketsFeatureKey]: TicketsState;
 }
 
@@ -36,7 +38,11 @@ export const ticketsReducer = createReducer(
     loading: true
   })),
   on(TicketsActions.getTicketSuccess, (state: TicketsState, { ticket }) => {
-    return adapter.addOne(ticket, { ...state, loading: false });
+    return adapter.addOne(ticket, {
+      ...state,
+      selectedTicketId: ticket._id,
+      loading: false
+    });
   }),
   on(TicketsActions.flush, (state: TicketsState) => {
     return adapter.removeAll({ ...state, loading: false });
@@ -46,3 +52,13 @@ export const ticketsReducer = createReducer(
 export function reducer(state: TicketsState | undefined, action: Action): any {
   return ticketsReducer(state, action);
 }
+
+export const getSelectedTicketId = (state: State) =>
+  state[ticketsFeatureKey].selectedTicketId;
+
+export const {
+  selectAll,
+  selectEntities,
+  selectIds,
+  selectTotal
+} = adapter.getSelectors();

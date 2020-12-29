@@ -2,7 +2,6 @@ import { of } from 'rxjs';
 import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { addErrorToast } from '@core/store/toasts/toasts.actions';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 

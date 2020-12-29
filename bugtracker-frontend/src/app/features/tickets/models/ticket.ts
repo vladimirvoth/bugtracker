@@ -1,7 +1,7 @@
 export interface Ticket {
   _id: string;
   title: string;
-  ticketType: Type;
+  type: Type;
   priority: Priority;
   description: string;
 }

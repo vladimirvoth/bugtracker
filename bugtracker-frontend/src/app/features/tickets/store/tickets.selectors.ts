@@ -6,9 +6,20 @@ export const selectTicketsState = createFeatureSelector<fromTickets.TicketsState
   fromTickets.ticketsFeatureKey
 );
 
-export const selectTickets = createSelector(
+export const selectAllTickets = createSelector(
   selectTicketsState,
-  (state: fromTickets.TicketsState) => state
+  fromTickets.selectAll
+);
+
+export const selectTicketEntities = createSelector(
+  selectTicketsState,
+  fromTickets.selectEntities
+);
+
+export const selectCurrentTicket = createSelector(
+  selectTicketEntities,
+  fromTickets.getSelectedTicketId,
+  (ticketEntities, ticketId) => ticketEntities[ticketId]
 );
 
 export const selectLoading = createSelector(

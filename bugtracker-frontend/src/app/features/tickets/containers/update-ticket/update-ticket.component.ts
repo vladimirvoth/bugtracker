@@ -1,11 +1,14 @@
+import { filter } from 'rxjs/operators';
+
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 
+import { ticketForm } from '../../models/form';
+import { priorities, types } from '../../models/ticket';
 import { getTicket } from '../../store/tickets.actions';
 import * as fromTickets from '../../store/tickets.reducer';
-import { selectTickets } from '../../store/tickets.selectors';
+import { selectCurrentTicket, selectLoading } from '../../store/tickets.selectors';
 
 @Component({
   selector: 'app-update-ticket',
@@ -13,21 +16,12 @@ import { selectTickets } from '../../store/tickets.selectors';
   styleUrls: ['./update-ticket.component.scss']
 })
 export class UpdateTicketComponent implements OnInit {
-  id: string;
+  ticketForm = ticketForm;
+  types = types;
+  priorities = priorities;
 
-  tickets$ = this.store.select(selectTickets);
-
-  // Weg damit
-  username = new FormControl('Test', [
-    Validators.required,
-    Validators.maxLength(5)
-  ]);
-
-  types = [
-    { key: 'story', value: 'Story' },
-    { key: 'task', value: 'Task' },
-    { key: 'bug', value: 'Bug' }
-  ];
+  tickets$ = this.store.select(selectCurrentTicket);
+  loading$ = this.store.select(selectLoading);
 
   constructor(
     private route: ActivatedRoute,
@@ -36,11 +30,18 @@ export class UpdateTicketComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.id = params['id'];
-
       this.store.dispatch(getTicket({ id: params['id'] }));
 
-      // this.tickets$.subscribe((tickets) => console.log('sub', tickets));
+      this.tickets$
+        .pipe(filter((ticket) => Boolean(ticket)))
+        .subscribe((ticket) => {
+          this.ticketForm.patchValue({
+            title: ticket.title,
+            type: ticket.type,
+            priority: ticket.priority,
+            description: ticket.description
+          });
+        });
     });
   }
 
