@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { editorConfig } from '../../../../../assets/config/config.angular-editor';
-import { ticketForm } from '../../models/form';
+import { newTicketForm } from '../../models/form';
 import { priorities, types } from '../../models/ticket';
 import { createTicket } from '../../store/tickets.actions';
 import * as fromTickets from '../../store/tickets.reducer';
@@ -17,7 +17,7 @@ import { selectLoading } from '../../store/tickets.selectors';
 })
 export class CreateTicketModalComponent {
   closeBtnName: string;
-  ticketForm = ticketForm;
+  ticketForm = newTicketForm;
   editorConfig = editorConfig;
   types = types;
   priorities = priorities;

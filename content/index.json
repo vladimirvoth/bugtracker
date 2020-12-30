@@ -24,6 +24,7 @@
     "emptyTitle": "Title is required!",
     "emptyType": "Type is required!",
     "emptyPriority": "Priority is required!",
-    "emptyDescription": "Description is required!"
+    "emptyDescription": "Description is required!",
+    "notFound": "Ticket could not be found."
   }
 }

@@ -7,25 +7,32 @@
 
 <app-inline-edit
   [control]="ticketForm.get('title')"
-  (focusOut)="saveCost($event)"
+  (focusOut)="save($event, 'title')"
 ></app-inline-edit>
 
 <app-inline-edit
   [control]="ticketForm.get('type')"
   [type]="'select'"
   [selectItems]="types"
-  (focusOut)="saveCost($event)"
+  (focusOut)="save($event, 'type')"
 ></app-inline-edit>
 
 <app-inline-edit
   [control]="ticketForm.get('priority')"
   [type]="'select'"
   [selectItems]="priorities"
-  (focusOut)="saveCost($event)"
+  (focusOut)="save($event, 'priority')"
+></app-inline-edit>
+
+<app-inline-edit
+  [control]="ticketForm.get('status')"
+  [type]="'select'"
+  [selectItems]="statuses"
+  (focusOut)="save($event, 'status')"
 ></app-inline-edit>
 
 <app-inline-edit
   [control]="ticketForm.get('description')"
   [type]="'editor'"
-  (focusOut)="saveCost($event)"
+  (focusOut)="save($event, 'description')"
 ></app-inline-edit>

@@ -44,6 +44,14 @@ export const ticketsReducer = createReducer(
       loading: false
     });
   }),
+  on(TicketsActions.updateTicket, (state: TicketsState) => ({
+    ...state,
+    loading: true
+  })),
+  on(TicketsActions.updateTicketSuccess, (state: TicketsState) => ({
+    ...state,
+    loading: false
+  })),
   on(TicketsActions.flush, (state: TicketsState) => {
     return adapter.removeAll({ ...state, loading: false });
   })

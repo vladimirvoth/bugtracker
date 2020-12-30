@@ -4,9 +4,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 
-import { ticketForm } from '../../models/form';
-import { priorities, types } from '../../models/ticket';
-import { getTicket } from '../../store/tickets.actions';
+import { updateTicketForm } from '../../models/form';
+import { priorities, statuses, types } from '../../models/ticket';
+import { getTicket, updateTicket } from '../../store/tickets.actions';
 import * as fromTickets from '../../store/tickets.reducer';
 import { selectCurrentTicket, selectLoading } from '../../store/tickets.selectors';
 
@@ -16,9 +16,11 @@ import { selectCurrentTicket, selectLoading } from '../../store/tickets.selector
   styleUrls: ['./update-ticket.component.scss']
 })
 export class UpdateTicketComponent implements OnInit {
-  ticketForm = ticketForm;
+  id: string;
+  ticketForm = updateTicketForm;
   types = types;
   priorities = priorities;
+  statuses = statuses;
 
   tickets$ = this.store.select(selectCurrentTicket);
   loading$ = this.store.select(selectLoading);
@@ -35,17 +37,20 @@ export class UpdateTicketComponent implements OnInit {
       this.tickets$
         .pipe(filter((ticket) => Boolean(ticket)))
         .subscribe((ticket) => {
+          this.id = ticket._id;
+
           this.ticketForm.patchValue({
             title: ticket.title,
             type: ticket.type,
             priority: ticket.priority,
+            status: ticket.status,
             description: ticket.description
           });
         });
     });
   }
 
-  saveCost(value) {
-    console.log('saveCost', value);
+  save(value, property) {
+    this.store.dispatch(updateTicket({ id: this.id, value, property }));
   }
 }

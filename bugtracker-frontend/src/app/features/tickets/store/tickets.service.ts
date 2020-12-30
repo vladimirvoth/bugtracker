@@ -21,4 +21,15 @@ export class TicketsService {
   getTicket(id: string): Observable<Ticket> {
     return this.http.get<Ticket>(`${environment.baseUrl}/tickets/${id}`);
   }
+
+  updateTicket(
+    id: string,
+    value: string | number,
+    property: string
+  ): Observable<Ticket> {
+    return this.http.patch<Ticket>(`${environment.baseUrl}/tickets/${id}`, {
+      value,
+      property
+    });
+  }
 }

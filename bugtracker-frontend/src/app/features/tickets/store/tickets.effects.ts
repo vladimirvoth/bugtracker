@@ -60,6 +60,27 @@ export class TicketsEffects {
     )
   );
 
+  updateTicket$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TicketsActions.updateTicket),
+      exhaustMap((payload) =>
+        this.ticketsService
+          .updateTicket(payload.id, payload.value, payload.property)
+          .pipe(
+            map((ticket) => TicketsActions.updateTicketSuccess({ ticket })),
+            catchError((error) =>
+              of(
+                addErrorToast({
+                  headline: error.error.msg
+                }),
+                TicketsActions.flush()
+              )
+            )
+          )
+      )
+    )
+  );
+
   constructor(
     private actions$: Actions,
     private ticketsService: TicketsService

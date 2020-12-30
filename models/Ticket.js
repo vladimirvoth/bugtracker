@@ -15,6 +15,11 @@ const TicketSchema = mongoose.Schema({
     enum: ['STANDARD', 'HIGH', 'BLOCKER'],
     required: true
   },
+  status: {
+    type: String,
+    enum: ['OPEN', 'IN_PROGRESS', 'TESTING', 'DONE'],
+    default: 'OPEN'
+  },
   description: {
     type: String,
     required: true

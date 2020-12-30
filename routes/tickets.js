@@ -41,7 +41,6 @@ router.post(
     const { ticket } = req.body;
 
     if (errors.length > 0) {
-      console.log(errors);
       return res.status(422).json({ msg: errors[0].msg });
     } else {
       const newTicket = new Ticket({
@@ -80,6 +79,36 @@ router.get(
         res.json(ticket);
       }
     });
+  }
+);
+
+const updateTicketValidation = [
+  body('value').not().isEmpty().trim().escape(),
+  body('property').not().isEmpty().trim().escape()
+];
+
+router.patch(
+  '/:id',
+  updateTicketValidation,
+  passport.authenticate('jwt', { session: false }),
+  async (req, res) => {
+    try {
+      const errors = validationResult(req).array();
+
+      if (errors.length > 0) {
+        return res.status(422).json({ msg: errors[0].msg });
+      } else {
+        const ticket = await Ticket.findOne({ _id: req.params.id });
+        ticket[req.body.property] = req.body.value;
+        await ticket.save();
+
+        res.json(ticket);
+      }
+    } catch {
+      return res.status(404).json({
+        msg: content.notFound
+      });
+    }
   }
 );
 

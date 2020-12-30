@@ -22,4 +22,14 @@ export const getTicketSuccess = createAction(
   props<{ ticket: Ticket }>()
 );
 
+export const updateTicket = createAction(
+  '[Tickets] Update Ticket',
+  props<{ id: string; value: string | number; property: string }>()
+);
+
+export const updateTicketSuccess = createAction(
+  '[Tickets] Update Ticket Success',
+  props<{ ticket: Ticket }>()
+);
+
 export const flush = createAction('[Tickets] Flush');
