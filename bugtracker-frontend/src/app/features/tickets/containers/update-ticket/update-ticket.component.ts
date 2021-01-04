@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 
-import { updateTicketForm } from '../../models/form';
+import { updateTicketForm } from '../../models/forms';
 import { priorities, statuses, types } from '../../models/ticket';
 import { getTicket, updateTicket } from '../../store/tickets.actions';
 import * as fromTickets from '../../store/tickets.reducer';
@@ -22,7 +22,7 @@ export class UpdateTicketComponent implements OnInit {
   priorities = priorities;
   statuses = statuses;
 
-  tickets$ = this.store.select(selectCurrentTicket);
+  ticket$ = this.store.select(selectCurrentTicket);
   loading$ = this.store.select(selectLoading);
 
   constructor(
@@ -34,7 +34,7 @@ export class UpdateTicketComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.store.dispatch(getTicket({ id: params['id'] }));
 
-      this.tickets$
+      this.ticket$
         .pipe(filter((ticket) => Boolean(ticket)))
         .subscribe((ticket) => {
           this.id = ticket._id;

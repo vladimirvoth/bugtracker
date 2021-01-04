@@ -7,13 +7,15 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
+import { CommentsComponent } from './containers/comments/comments.component';
 import {
     CreateTicketModalComponent
 } from './containers/create-ticket-modal/create-ticket-modal.component';
 import { UpdateTicketComponent } from './containers/update-ticket/update-ticket.component';
+import { CommentsControlService } from './services/comments-control.service';
+import { TicketsService } from './services/tickets.service';
 import { TicketsEffects } from './store/tickets.effects';
 import * as fromTickets from './store/tickets.reducer';
-import { TicketsService } from './store/tickets.service';
 
 const routes: Routes = [
   {
@@ -23,7 +25,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [UpdateTicketComponent, CreateTicketModalComponent],
+  declarations: [
+    UpdateTicketComponent,
+    CreateTicketModalComponent,
+    CommentsComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -33,6 +39,6 @@ const routes: Routes = [
     EffectsModule.forFeature([TicketsEffects]),
     CoreModule
   ],
-  providers: [TicketsService]
+  providers: [TicketsService, CommentsControlService]
 })
 export class TicketsModule {}

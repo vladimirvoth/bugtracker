@@ -6,8 +6,8 @@ import { addErrorToast } from '@core/store/toasts/toasts.actions';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { environment } from '../../../../environments/environment';
+import { TicketsService } from '../services/tickets.service';
 import * as TicketsActions from './tickets.actions';
-import { TicketsService } from './tickets.service';
 
 @Injectable()
 export class TicketsEffects {
@@ -77,6 +77,65 @@ export class TicketsEffects {
               )
             )
           )
+      )
+    )
+  );
+
+  createComment$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TicketsActions.createComment),
+      exhaustMap((payload) =>
+        this.ticketsService.createComment(payload.id, payload.comment).pipe(
+          map((ticket) => TicketsActions.createCommentSuccess({ ticket })),
+          catchError((error) =>
+            of(
+              addErrorToast({
+                headline: error.error.msg
+              }),
+              TicketsActions.flush()
+            )
+          )
+        )
+      )
+    )
+  );
+
+  updateComment$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TicketsActions.updateComment),
+      exhaustMap((payload) =>
+        this.ticketsService
+          .updateComment(payload.id, payload.commentId, payload.comment)
+          .pipe(
+            map((ticket) => TicketsActions.updateCommentSuccess({ ticket })),
+            catchError((error) =>
+              of(
+                addErrorToast({
+                  headline: error.error.msg
+                }),
+                TicketsActions.flush()
+              )
+            )
+          )
+      )
+    )
+  );
+
+  removeComment$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TicketsActions.removeComment),
+      exhaustMap((payload) =>
+        this.ticketsService.removeComment(payload.id, payload.commentId).pipe(
+          map((ticket) => TicketsActions.removeCommentSuccess({ ticket })),
+          catchError((error) =>
+            of(
+              addErrorToast({
+                headline: error.error.msg
+              }),
+              TicketsActions.flush()
+            )
+          )
+        )
       )
     )
   );

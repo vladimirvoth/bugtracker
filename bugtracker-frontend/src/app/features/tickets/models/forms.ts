@@ -14,3 +14,7 @@ export const updateTicketForm = new FormGroup({
   status: new FormControl('', [Validators.required]),
   description: new FormControl('', [Validators.required])
 });
+
+export const commentForm = new FormGroup({
+  comment: new FormControl('', [Validators.required])
+});

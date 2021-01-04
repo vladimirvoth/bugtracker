@@ -48,10 +48,42 @@ export const ticketsReducer = createReducer(
     ...state,
     loading: true
   })),
-  on(TicketsActions.updateTicketSuccess, (state: TicketsState) => ({
+  on(TicketsActions.updateTicketSuccess, (state: TicketsState, { ticket }) => {
+    return adapter.updateOne(
+      { id: ticket._id, changes: ticket },
+      { ...state, loading: false }
+    );
+  }),
+  on(TicketsActions.createComment, (state: TicketsState) => ({
     ...state,
-    loading: false
+    loading: true
   })),
+  on(TicketsActions.createCommentSuccess, (state: TicketsState, { ticket }) => {
+    return adapter.updateOne(
+      { id: ticket._id, changes: ticket },
+      { ...state, loading: false }
+    );
+  }),
+  on(TicketsActions.updateComment, (state: TicketsState) => ({
+    ...state,
+    loading: true
+  })),
+  on(TicketsActions.updateCommentSuccess, (state: TicketsState, { ticket }) => {
+    return adapter.updateOne(
+      { id: ticket._id, changes: ticket },
+      { ...state, loading: false }
+    );
+  }),
+  on(TicketsActions.removeComment, (state: TicketsState) => ({
+    ...state,
+    loading: true
+  })),
+  on(TicketsActions.removeCommentSuccess, (state: TicketsState, { ticket }) => {
+    return adapter.updateOne(
+      { id: ticket._id, changes: ticket },
+      { ...state, loading: false }
+    );
+  }),
   on(TicketsActions.flush, (state: TicketsState) => {
     return adapter.removeAll({ ...state, loading: false });
   })

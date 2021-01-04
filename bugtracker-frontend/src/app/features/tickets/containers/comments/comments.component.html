@@ -1,0 +1,31 @@
+<h2>Comments</h2>
+<div *ngFor="let comment of comments">
+  <button (click)="removeComment(comment._id)">Remove</button>
+  <app-inline-edit
+    [control]="commentsForm.get(comment._id)"
+    [type]="'editor'"
+    (focusOut)="updateComment($event, comment._id)"
+  ></app-inline-edit>
+</div>
+<form
+  class="ticket-form"
+  novalidate
+  (ngSubmit)="createComment()"
+  [formGroup]="ticketForm"
+>
+  <div class="form-group">
+    <angular-editor
+      formControlName="comment"
+      [config]="editorConfig"
+    ></angular-editor>
+  </div>
+  <div class="form-group ticket-form__button-wrapper">
+    <button
+      type="submit"
+      class="btn btn-primary ticket-form__button"
+      [disabled]="ticketForm.invalid || (loading$ | async)"
+    >
+      Send
+    </button>
+  </div>
+</form>

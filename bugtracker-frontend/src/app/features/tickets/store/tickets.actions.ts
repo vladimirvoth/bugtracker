@@ -32,4 +32,34 @@ export const updateTicketSuccess = createAction(
   props<{ ticket: Ticket }>()
 );
 
+export const createComment = createAction(
+  '[Tickets] Create Comment',
+  props<{ id: string; comment: string }>()
+);
+
+export const createCommentSuccess = createAction(
+  '[Tickets] Create Comment Success',
+  props<{ ticket: Ticket }>()
+);
+
+export const updateComment = createAction(
+  '[Tickets] Update Comment',
+  props<{ id: string; commentId: string; comment: string }>()
+);
+
+export const updateCommentSuccess = createAction(
+  '[Tickets] Update Comment Success',
+  props<{ ticket: Ticket }>()
+);
+
+export const removeComment = createAction(
+  '[Tickets] Remove Comment',
+  props<{ id: string; commentId: string }>()
+);
+
+export const removeCommentSuccess = createAction(
+  '[Tickets] Remove Comment Success',
+  props<{ ticket: Ticket }>()
+);
+
 export const flush = createAction('[Tickets] Flush');

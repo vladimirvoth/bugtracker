@@ -5,6 +5,12 @@ export interface Ticket {
   priority: Priority;
   status: Status;
   description: string;
+  comments: Array<Comment>;
+}
+
+export interface Comment {
+  _id: string;
+  comment: string;
 }
 
 export enum Type {

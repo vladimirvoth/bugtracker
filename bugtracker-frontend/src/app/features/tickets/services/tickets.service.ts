@@ -32,4 +32,32 @@ export class TicketsService {
       property
     });
   }
+
+  createComment(id: string, comment: string): Observable<Ticket> {
+    return this.http.post<Ticket>(
+      `${environment.baseUrl}/tickets/${id}/comments`,
+      {
+        comment
+      }
+    );
+  }
+
+  updateComment(
+    id: string,
+    commentId: string,
+    comment: string
+  ): Observable<Ticket> {
+    return this.http.patch<Ticket>(
+      `${environment.baseUrl}/tickets/${id}/comments/${commentId}`,
+      {
+        comment
+      }
+    );
+  }
+
+  removeComment(id: string, commentId: string): Observable<Ticket> {
+    return this.http.delete<Ticket>(
+      `${environment.baseUrl}/tickets/${id}/comments/${commentId}`
+    );
+  }
 }
