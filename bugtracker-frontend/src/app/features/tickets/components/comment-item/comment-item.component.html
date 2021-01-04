@@ -1,0 +1,6 @@
+<button (click)="remove()">Remove</button>
+<app-inline-edit
+  [control]="control"
+  [type]="'editor'"
+  (focusOut)="update($event)"
+></app-inline-edit>

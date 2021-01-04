@@ -13,11 +13,11 @@ import * as fromTickets from '../../store/tickets.reducer';
 import { selectCurrentTicket, selectLoading } from '../../store/tickets.selectors';
 
 @Component({
-  selector: 'app-comments',
-  templateUrl: './comments.component.html',
-  styleUrls: ['./comments.component.scss']
+  selector: 'app-comments-list',
+  templateUrl: './comments-list.component.html',
+  styleUrls: ['./comments-list.component.scss']
 })
-export class CommentsComponent implements OnInit {
+export class CommentsListComponent implements OnInit {
   id: string;
   comments: Array<Comment>;
   commentsForm: FormGroup;
@@ -55,21 +55,21 @@ export class CommentsComponent implements OnInit {
     this.ticketForm.reset();
   }
 
-  updateComment(comment, commentId) {
+  updateComment(event) {
     this.store.dispatch(
       updateComment({
         id: this.id,
-        commentId,
-        comment
+        commentId: event.commentId,
+        comment: event.comment
       })
     );
   }
 
-  removeComment(commentId) {
+  removeComment(event) {
     this.store.dispatch(
       removeComment({
         id: this.id,
-        commentId
+        commentId: event.commentId
       })
     );
   }

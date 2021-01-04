@@ -11,6 +11,25 @@ import * as TicketsActions from './tickets.actions';
 
 @Injectable()
 export class TicketsEffects {
+  loadTickets$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TicketsActions.loadTickets),
+      exhaustMap(() =>
+        this.ticketsService.loadTickets().pipe(
+          map((tickets) => TicketsActions.loadTicketsSuccess({ tickets })),
+          catchError((error) =>
+            of(
+              addErrorToast({
+                headline: error.error.msg
+              }),
+              TicketsActions.flush()
+            )
+          )
+        )
+      )
+    )
+  );
+
   createTicket$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TicketsActions.createTicket),

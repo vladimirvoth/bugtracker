@@ -7,15 +7,18 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import { CommentsComponent } from './containers/comments/comments.component';
+import { CommentsListComponent } from './containers/comments-list/comments-list.component';
 import {
     CreateTicketModalComponent
 } from './containers/create-ticket-modal/create-ticket-modal.component';
+import { TicketsListComponent } from './containers/tickets-list/tickets-list.component';
 import { UpdateTicketComponent } from './containers/update-ticket/update-ticket.component';
 import { CommentsControlService } from './services/comments-control.service';
 import { TicketsService } from './services/tickets.service';
 import { TicketsEffects } from './store/tickets.effects';
 import * as fromTickets from './store/tickets.reducer';
+import { TicketItemComponent } from './components/ticket-item/ticket-item.component';
+import { CommentItemComponent } from './components/comment-item/comment-item.component';
 
 const routes: Routes = [
   {
@@ -28,7 +31,10 @@ const routes: Routes = [
   declarations: [
     UpdateTicketComponent,
     CreateTicketModalComponent,
-    CommentsComponent
+    CommentsListComponent,
+    TicketsListComponent,
+    TicketItemComponent,
+    CommentItemComponent
   ],
   imports: [
     CommonModule,
@@ -39,6 +45,7 @@ const routes: Routes = [
     EffectsModule.forFeature([TicketsEffects]),
     CoreModule
   ],
+  exports: [TicketsListComponent],
   providers: [TicketsService, CommentsControlService]
 })
 export class TicketsModule {}

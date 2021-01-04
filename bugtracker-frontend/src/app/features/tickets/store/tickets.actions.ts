@@ -2,6 +2,13 @@ import { createAction, props } from '@ngrx/store';
 
 import { Ticket } from '../models/ticket';
 
+export const loadTickets = createAction('[Tickets] Load Tickets');
+
+export const loadTicketsSuccess = createAction(
+  '[Tickets] Load Tickets Success',
+  props<{ tickets: Array<Ticket> }>()
+);
+
 export const createTicket = createAction(
   '[Tickets] Create Ticket',
   props<{ ticket: Ticket }>()

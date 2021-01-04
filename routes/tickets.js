@@ -33,6 +33,16 @@ const ticketValidation = [
     .escape()
 ];
 
+router.get(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  async (req, res) => {
+    const tickets = await Ticket.find({ created_by: req.user.id });
+
+    res.json(tickets);
+  }
+);
+
 router.post(
   '/',
   ticketValidation,

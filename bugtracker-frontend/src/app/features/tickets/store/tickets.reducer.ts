@@ -26,6 +26,13 @@ export interface State extends EntityState<Ticket> {
 
 export const ticketsReducer = createReducer(
   initialState,
+  on(TicketsActions.loadTickets, (state: TicketsState) => ({
+    ...state,
+    loading: true
+  })),
+  on(TicketsActions.loadTicketsSuccess, (state: TicketsState, { tickets }) => {
+    return adapter.upsertMany(tickets, { ...state, loading: false });
+  }),
   on(TicketsActions.createTicket, (state: TicketsState) => ({
     ...state,
     loading: true
@@ -38,7 +45,7 @@ export const ticketsReducer = createReducer(
     loading: true
   })),
   on(TicketsActions.getTicketSuccess, (state: TicketsState, { ticket }) => {
-    return adapter.addOne(ticket, {
+    return adapter.upsertOne(ticket, {
       ...state,
       selectedTicketId: ticket._id,
       loading: false

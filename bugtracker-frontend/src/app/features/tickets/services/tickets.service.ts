@@ -12,6 +12,10 @@ import { Ticket } from '../models/ticket';
 export class TicketsService {
   constructor(private http: HttpClient) {}
 
+  loadTickets(): Observable<Array<Ticket>> {
+    return this.http.get<Array<Ticket>>(`${environment.baseUrl}/tickets`);
+  }
+
   createTicket(ticket: Ticket): Observable<Ticket> {
     return this.http.post<Ticket>(`${environment.baseUrl}/tickets`, {
       ticket
