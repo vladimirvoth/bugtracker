@@ -1,5 +1,5 @@
 import { of } from 'rxjs';
-import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
+import { catchError, exhaustMap, map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { addErrorToast } from '@core/store/toasts/toasts.actions';

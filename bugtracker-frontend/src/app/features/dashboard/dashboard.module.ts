@@ -5,6 +5,7 @@ import { TicketsModule } from '@features/tickets/tickets.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { DashboardComponent } from './containers/dashboard.component';
+import { ChartWidgetComponent } from './components/chart-widget/chart-widget.component';
 
 const routes: Routes = [
   {
@@ -14,7 +15,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [DashboardComponent],
+  declarations: [DashboardComponent, ChartWidgetComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

@@ -1,3 +1,15 @@
-<ng-container *ngFor="let ticket of tickets$ | async">
+<button (click)="sortBy('status')">Status</button>
+
+<button (click)="sortBy('type')">Type</button>
+
+<button (click)="sortBy('priority')">Priority</button>
+
+<ng-container *ngFor="let ticket of filteredPaginatedTickets">
   <app-ticket-item [ticket]="ticket"></app-ticket-item>
 </ng-container>
+
+<pagination
+  [totalItems]="allTickets.length"
+  (pageChanged)="pageChanged($event)"
+  [itemsPerPage]="5"
+></pagination>

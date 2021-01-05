@@ -1,3 +1,5 @@
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -7,6 +9,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
+import { CommentItemComponent } from './components/comment-item/comment-item.component';
+import { TicketItemComponent } from './components/ticket-item/ticket-item.component';
 import { CommentsListComponent } from './containers/comments-list/comments-list.component';
 import {
     CreateTicketModalComponent
@@ -17,8 +21,6 @@ import { CommentsControlService } from './services/comments-control.service';
 import { TicketsService } from './services/tickets.service';
 import { TicketsEffects } from './store/tickets.effects';
 import * as fromTickets from './store/tickets.reducer';
-import { TicketItemComponent } from './components/ticket-item/ticket-item.component';
-import { CommentItemComponent } from './components/comment-item/comment-item.component';
 
 const routes: Routes = [
   {
@@ -43,7 +45,8 @@ const routes: Routes = [
     AngularEditorModule,
     StoreModule.forFeature(fromTickets.ticketsFeatureKey, fromTickets.reducer),
     EffectsModule.forFeature([TicketsEffects]),
-    CoreModule
+    CoreModule,
+    PaginationModule.forRoot()
   ],
   exports: [TicketsListComponent],
   providers: [TicketsService, CommentsControlService]
