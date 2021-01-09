@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const Ticket = require('../models/Ticket');
 const Comment = require('../models/Comment');
+const User = require('../models/User');
 const content = require('../content');
 const { body, validationResult } = require('express-validator');
 
@@ -85,8 +86,18 @@ router.get(
       });
     } else {
       const comments = await Comment.find({ ticket_id: id });
+      const user = await User.findById(ticket.created_by);
 
-      res.json({ ...ticket._doc, ...{ comments } });
+      res.json({
+        ...ticket._doc,
+        ...{ comments },
+        ...{
+          created_by_user: {
+            username: user.username,
+            picture: user.picture
+          }
+        }
+      });
     }
   }
 );
@@ -112,8 +123,18 @@ router.patch(
         await ticket.save();
 
         const comments = await Comment.find({ ticket_id: req.params.id });
+        const user = await User.findById(ticket.created_by);
 
-        res.json({ ...ticket._doc, ...{ comments } });
+        res.json({
+          ...ticket._doc,
+          ...{ comments },
+          ...{
+            created_by_user: {
+              username: user.username,
+              picture: user.picture
+            }
+          }
+        });
       }
     } catch {
       return res.status(404).json({
@@ -148,8 +169,18 @@ router.post(
       await newComment.save();
 
       const comments = await Comment.find({ ticket_id: id });
+      const user = await User.findById(ticket.created_by);
 
-      res.json({ ...ticket._doc, ...{ comments } });
+      res.json({
+        ...ticket._doc,
+        ...{ comments },
+        ...{
+          created_by_user: {
+            username: user.username,
+            picture: user.picture
+          }
+        }
+      });
     }
   }
 );
@@ -174,8 +205,18 @@ router.patch(
 
         const ticket = await Ticket.findOne({ _id: req.params.id });
         const comments = await Comment.find({ ticket_id: req.params.id });
+        const user = await User.findById(ticket.created_by);
 
-        res.json({ ...ticket._doc, ...{ comments } });
+        res.json({
+          ...ticket._doc,
+          ...{ comments },
+          ...{
+            created_by_user: {
+              username: user.username,
+              picture: user.picture
+            }
+          }
+        });
       }
     } catch {
       return res.status(404).json({
@@ -198,8 +239,18 @@ router.delete(
 
       const ticket = await Ticket.findOne({ _id: req.params.id });
       const comments = await Comment.find({ ticket_id: req.params.id });
+      const user = await User.findById(ticket.created_by);
 
-      res.json({ ...ticket._doc, ...{ comments } });
+      res.json({
+        ...ticket._doc,
+        ...{ comments },
+        ...{
+          created_by_user: {
+            username: user.username,
+            picture: user.picture
+          }
+        }
+      });
     } catch {
       return res.status(404).json({
         msg: content.tickets.notFound

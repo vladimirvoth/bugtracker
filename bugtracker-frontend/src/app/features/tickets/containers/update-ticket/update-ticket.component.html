@@ -1,33 +1,96 @@
-<app-inline-edit
-  [control]="ticketForm.get('title')"
-  (focusOut)="save($event, 'title')"
-></app-inline-edit>
+<div class="ticket">
+  <app-inline-edit
+    class="ticket__title"
+    [control]="ticketForm.get('title')"
+    (focusOut)="save($event, 'title')"
+  ></app-inline-edit>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-sm">
+          <label class="ticket__label" for="ticket-type">Type:</label>
+          <app-inline-edit
+            id="ticket-type"
+            class="ticket__select"
+            [control]="ticketForm.get('type')"
+            [type]="'select'"
+            [selectItems]="types"
+            (focusOut)="save($event, 'type')"
+          ></app-inline-edit>
+        </div>
+        <div class="col-sm">
+          <label class="ticket__label" for="ticket-status">Status:</label>
+          <app-inline-edit
+            id="ticket-status"
+            class="ticket__select"
+            [class]="{
+              open: ticketForm.get('status').value === 'OPEN',
+              inprogress: ticketForm.get('status').value === 'IN_PROGRESS',
+              testing: ticketForm.get('status').value === 'TESTING',
+              done: ticketForm.get('status').value === 'DONE'
+            }"
+            [control]="ticketForm.get('status')"
+            [type]="'select'"
+            [selectItems]="statuses"
+            (focusOut)="save($event, 'status')"
+          ></app-inline-edit>
+        </div>
+      </div>
 
-<app-inline-edit
-  [control]="ticketForm.get('type')"
-  [type]="'select'"
-  [selectItems]="types"
-  (focusOut)="save($event, 'type')"
-></app-inline-edit>
+      <div class="row">
+        <div class="col-sm">
+          <label class="ticket__label" for="ticket-priority">Priority:</label>
+          <app-inline-edit
+            id="ticket-priority"
+            class="ticket__select"
+            [control]="ticketForm.get('priority')"
+            [type]="'select'"
+            [selectItems]="priorities"
+            (focusOut)="save($event, 'priority')"
+          ></app-inline-edit>
+        </div>
+      </div>
 
-<app-inline-edit
-  [control]="ticketForm.get('priority')"
-  [type]="'select'"
-  [selectItems]="priorities"
-  (focusOut)="save($event, 'priority')"
-></app-inline-edit>
-
-<app-inline-edit
-  [control]="ticketForm.get('status')"
-  [type]="'select'"
-  [selectItems]="statuses"
-  (focusOut)="save($event, 'status')"
-></app-inline-edit>
-
-<app-inline-edit
-  [control]="ticketForm.get('description')"
-  [type]="'editor'"
-  (focusOut)="save($event, 'description')"
-></app-inline-edit>
-
-<app-comments-list></app-comments-list>
+      <h5 class="ticket__subtitle">Description</h5>
+      <hr class="ticket__subtitle-divider" />
+      <div class="row">
+        <div class="col-sm">
+          <app-inline-edit
+            [control]="ticketForm.get('description')"
+            [type]="'editor'"
+            (focusOut)="save($event, 'description')"
+          ></app-inline-edit>
+        </div>
+      </div>
+      <h5 class="ticket__subtitle">Comments</h5>
+      <hr class="ticket__subtitle-divider" />
+      <div class="row">
+        <div class="col-sm">
+          <app-comments-list></app-comments-list>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4" *ngIf="!(loading$ | async)">
+      <h6 class="ticket__subtitle">Creator</h6>
+      <img
+        class="ticket__profile-picture"
+        [src]="
+          (ticket$ | async).created_by_user.picture ||
+          '/assets/images/blank-profile.png'
+        "
+        alt="{{ (ticket$ | async).created_by_user.username }}"
+      />
+      <span class="ticket__right-text">{{
+        (ticket$ | async).created_by_user.username
+      }}</span>
+      <h6 class="ticket__subtitle">Created</h6>
+      <span class="ticket__right-text">{{
+        (ticket$ | async).created_at | date
+      }}</span>
+      <h6 class="ticket__subtitle">Last Update</h6>
+      <span class="ticket__right-text">{{
+        (ticket$ | async).updated_at | date
+      }}</span>
+    </div>
+  </div>
+</div>

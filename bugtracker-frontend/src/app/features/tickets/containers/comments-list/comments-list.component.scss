@@ -1,0 +1,13 @@
+@import '../../../../../styles/globals/vars.scss';
+
+:host {
+  display: block;
+
+  .comments {
+    padding: 1rem;
+
+    &__button-wrapper {
+      text-align: right;
+    }
+  }
+}

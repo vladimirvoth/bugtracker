@@ -1,31 +1,32 @@
-<h2>Comments</h2>
-<div *ngFor="let comment of comments">
-  <app-comment-item
-    [commentId]="comment._id"
-    [control]="commentsForm.get(comment._id)"
-    (updateComment)="updateComment($event)"
-    (removeComment)="removeComment($event)"
-  ></app-comment-item>
+<div class="comments">
+  <div *ngFor="let comment of comments">
+    <app-comment-item
+      [comment]="comment"
+      [control]="commentsForm.get(comment._id)"
+      (updateComment)="updateComment($event)"
+      (removeComment)="removeComment($event)"
+    ></app-comment-item>
+  </div>
+  <form
+    class="ticket-form"
+    novalidate
+    (ngSubmit)="createComment()"
+    [formGroup]="ticketForm"
+  >
+    <div class="form-group">
+      <angular-editor
+        formControlName="comment"
+        [config]="editorConfig"
+      ></angular-editor>
+    </div>
+    <div class="form-group comments__button-wrapper">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="ticketForm.invalid || (loading$ | async)"
+      >
+        Send
+      </button>
+    </div>
+  </form>
 </div>
-<form
-  class="ticket-form"
-  novalidate
-  (ngSubmit)="createComment()"
-  [formGroup]="ticketForm"
->
-  <div class="form-group">
-    <angular-editor
-      formControlName="comment"
-      [config]="editorConfig"
-    ></angular-editor>
-  </div>
-  <div class="form-group ticket-form__button-wrapper">
-    <button
-      type="submit"
-      class="btn btn-primary ticket-form__button"
-      [disabled]="ticketForm.invalid || (loading$ | async)"
-    >
-      Send
-    </button>
-  </div>
-</form>

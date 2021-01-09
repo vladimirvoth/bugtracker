@@ -1,0 +1,55 @@
+@import '../../../../../styles/globals/vars.scss';
+
+:host {
+  display: block;
+
+  .comment {
+    margin-bottom: 2rem;
+
+    &__header {
+      cursor: pointer;
+
+      &:hover .comment__header-icon--trash {
+        display: inline;
+      }
+    }
+
+    &__header-icon {
+      display: inline-block;
+      font-size: 1.6rem;
+      margin-right: 1rem;
+      color: $fs-color-select;
+
+      &--comment {
+        font-size: 1.6rem;
+        margin-right: 1rem;
+      }
+
+      &--trash {
+        display: none;
+        position: relative;
+        bottom: 4px;
+        font-size: 0.8rem;
+        margin-right: 1rem;
+      }
+    }
+
+    &__header-description {
+      display: inline-block;
+      position: relative;
+      bottom: 4px;
+      margin: 0 1rem 0 0;
+    }
+
+    &__header-date {
+      font-size: 12px;
+      color: $fs-color-select;
+    }
+
+    &__header-dlt-btn {
+      display: inline-block;
+      border: none;
+      background: transparent;
+    }
+  }
+}

@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { CoreModule } from '@core/core.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -46,7 +47,8 @@ const routes: Routes = [
     StoreModule.forFeature(fromTickets.ticketsFeatureKey, fromTickets.reducer),
     EffectsModule.forFeature([TicketsEffects]),
     CoreModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    FontAwesomeModule
   ],
   exports: [TicketsListComponent],
   providers: [TicketsService, CommentsControlService]

@@ -6,11 +6,18 @@ export interface Ticket {
   status: Status;
   description: string;
   comments: Array<Comment>;
+  created_at: string;
+  updated_at: string;
+  created_by_user: {
+    username: string;
+    picture: string;
+  };
 }
 
 export interface Comment {
   _id: string;
   comment: string;
+  created_at: string;
 }
 
 export enum Type {

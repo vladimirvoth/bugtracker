@@ -1,7 +1,8 @@
 import { filter } from 'rxjs/operators';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 
 import { updateTicketForm } from '../../models/forms';
@@ -16,11 +17,14 @@ import { selectCurrentTicket, selectLoading } from '../../store/tickets.selector
   styleUrls: ['./update-ticket.component.scss']
 })
 export class UpdateTicketComponent implements OnInit {
+  @ViewChild('comment') comment: ElementRef;
+
   id: string;
   ticketForm = updateTicketForm;
   types = types;
   priorities = priorities;
   statuses = statuses;
+  faComment = faComment;
 
   ticket$ = this.store.select(selectCurrentTicket);
   loading$ = this.store.select(selectLoading);

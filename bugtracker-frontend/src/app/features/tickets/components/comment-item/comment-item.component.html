@@ -1,6 +1,23 @@
-<button (click)="remove()">Remove</button>
-<app-inline-edit
-  [control]="control"
-  [type]="'editor'"
-  (focusOut)="update($event)"
-></app-inline-edit>
+<div class="comment">
+  <div class="comment__header">
+    <fa-icon
+      class="comment__header-icon comment__header-icon--comment"
+      [icon]="faComment"
+    ></fa-icon>
+    <p class="comment__header-description">
+      Comment added -
+      <span class="comment__header-date">{{ comment.created_at | date }}</span>
+    </p>
+    <button class="comment__header-dlt-btn" (click)="remove()">
+      <fa-icon
+        class="comment__header-icon comment__header-icon--trash"
+        [icon]="faTrashAlt"
+      ></fa-icon>
+    </button>
+  </div>
+  <app-inline-edit
+    [control]="control"
+    [type]="'editor'"
+    (focusOut)="update($event)"
+  ></app-inline-edit>
+</div>

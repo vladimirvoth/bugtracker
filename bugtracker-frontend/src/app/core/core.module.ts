@@ -18,10 +18,10 @@ import { ImprintComponent } from './containers/imprint/imprint.component';
 import { LayoutComponent } from './containers/layout/layout.component';
 import { LegalComponent } from './containers/legal/legal.component';
 import { AutoFocusDirective } from './directives/auto-focus.directive';
+import { SelectValuePipe } from './pipes/select-value.pipe';
 import * as CoreState from './store/index';
 import { ToastsEffects } from './store/toasts/toasts.effects';
 import { UserEffects } from './store/user/user.effects';
-import { SelectValuePipe } from './pipes/select-value.pipe';
 
 @NgModule({
   declarations: [

@@ -22,7 +22,7 @@ export class CommentsListComponent implements OnInit {
   comments: Array<Comment>;
   commentsForm: FormGroup;
   ticketForm = commentForm;
-  editorConfig = { ...editorConfig, placeholder: 'Enter comment here...' };
+  editorConfig = { ...editorConfig, placeholder: 'Write a comment here...' };
 
   ticket$ = this.store.select(selectCurrentTicket);
   loading$ = this.store.select(selectLoading);
