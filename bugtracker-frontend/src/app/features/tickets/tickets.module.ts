@@ -11,7 +11,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 import { CommentItemComponent } from './components/comment-item/comment-item.component';
-import { TicketItemComponent } from './components/ticket-item/ticket-item.component';
 import { CommentsListComponent } from './containers/comments-list/comments-list.component';
 import {
     CreateTicketModalComponent
@@ -36,7 +35,6 @@ const routes: Routes = [
     CreateTicketModalComponent,
     CommentsListComponent,
     TicketsListComponent,
-    TicketItemComponent,
     CommentItemComponent
   ],
   imports: [

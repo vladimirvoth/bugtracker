@@ -18,6 +18,7 @@ import { ImprintComponent } from './containers/imprint/imprint.component';
 import { LayoutComponent } from './containers/layout/layout.component';
 import { LegalComponent } from './containers/legal/legal.component';
 import { AutoFocusDirective } from './directives/auto-focus.directive';
+import { EllipsisPipe } from './pipes/ellipsis.pipe';
 import { SelectValuePipe } from './pipes/select-value.pipe';
 import * as CoreState from './store/index';
 import { ToastsEffects } from './store/toasts/toasts.effects';
@@ -35,7 +36,8 @@ import { UserEffects } from './store/user/user.effects';
     ImprintComponent,
     InlineEditComponent,
     AutoFocusDirective,
-    SelectValuePipe
+    SelectValuePipe,
+    EllipsisPipe
   ],
   imports: [
     CommonModule,
@@ -47,6 +49,6 @@ import { UserEffects } from './store/user/user.effects';
     ReactiveFormsModule,
     AngularEditorModule
   ],
-  exports: [LayoutComponent, InlineEditComponent]
+  exports: [LayoutComponent, InlineEditComponent, SelectValuePipe, EllipsisPipe]
 })
 export class CoreModule {}

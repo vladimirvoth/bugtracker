@@ -2,7 +2,6 @@ import { filter } from 'rxjs/operators';
 
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 
 import { updateTicketForm } from '../../models/forms';
@@ -24,7 +23,6 @@ export class UpdateTicketComponent implements OnInit {
   types = types;
   priorities = priorities;
   statuses = statuses;
-  faComment = faComment;
 
   ticket$ = this.store.select(selectCurrentTicket);
   loading$ = this.store.select(selectLoading);

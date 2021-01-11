@@ -1,0 +1,25 @@
+@import '../../../../../styles/globals/vars.scss';
+@import '../../../../../styles/globals/breakpoints.scss';
+
+:host {
+  display: block;
+
+  .tickets-list {
+    &__row {
+      cursor: pointer;
+    }
+
+    &__sort-btn {
+      border: none;
+      background: transparent;
+
+      @include breakpoint($sm) {
+        display: none;
+      }
+    }
+
+    &__sort-icon {
+      font-size: 10px;
+    }
+  }
+}

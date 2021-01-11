@@ -1,5 +1,10 @@
 @import '../globals/vars.scss';
 
+.table th,
+.table td {
+  border-top: none;
+}
+
 .ng-invalid[required].ng-dirty,
 .ng-invalid.required.ng-dirty,
 .ng-invalid[required].ng-touched,

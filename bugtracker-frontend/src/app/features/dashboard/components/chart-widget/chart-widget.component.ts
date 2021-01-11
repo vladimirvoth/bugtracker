@@ -2,6 +2,9 @@ import { ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 
 import { Component, OnInit } from '@angular/core';
+import * as fromTickets from '@features/tickets/store/tickets.reducer';
+import { selectAllTickets } from '@features/tickets/store/tickets.selectors';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-chart-widget',
@@ -36,9 +39,13 @@ export class ChartWidgetComponent implements OnInit {
     }
   ];
 
-  constructor() {}
+  constructor(private store: Store<fromTickets.State>) {}
 
   ngOnInit(): void {
     this.pieChartData = [1, 2, 2, 1];
+
+    this.store
+      .select(selectAllTickets)
+      .subscribe((hier) => console.log('hier', hier));
   }
 }

@@ -1,10 +1,10 @@
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
-import { from, Observable, of } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
 
 import { Component, OnInit } from '@angular/core';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 
+import { priorities, statuses, types } from '../../models/ticket';
 import { loadTickets } from '../../store/tickets.actions';
 import * as fromTickets from '../../store/tickets.reducer';
 import { selectAllTickets, selectLoading } from '../../store/tickets.selectors';
@@ -15,13 +15,16 @@ import { selectAllTickets, selectLoading } from '../../store/tickets.selectors';
   styleUrls: ['./tickets-list.component.scss']
 })
 export class TicketsListComponent implements OnInit {
-  loading$ = this.store.select(selectLoading);
-
+  types = types;
+  priorities = priorities;
+  statuses = statuses;
+  faArrowDown = faArrowDown;
   allTickets = [];
   filteredPaginatedTickets = [];
-
   startItem = 0;
-  endItem = 5;
+  endItem = 6;
+
+  loading$ = this.store.select(selectLoading);
 
   constructor(private store: Store<fromTickets.State>) {}
 
