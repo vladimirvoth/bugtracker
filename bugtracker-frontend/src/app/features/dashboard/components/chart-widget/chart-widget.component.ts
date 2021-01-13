@@ -2,6 +2,7 @@ import { ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 
 import { Component, OnInit } from '@angular/core';
+import { Status } from '@features/tickets/models/ticket';
 import * as fromTickets from '@features/tickets/store/tickets.reducer';
 import { selectAllTickets } from '@features/tickets/store/tickets.selectors';
 import { Store } from '@ngrx/store';
@@ -19,33 +20,39 @@ export class ChartWidgetComponent implements OnInit {
       position: 'top'
     }
   };
-  pieChartLabels: Label[] = [
-    ['Open'],
-    ['In Progress'],
-    ['Testing'],
-    ['Closed']
-  ];
+  pieChartLabels: Label[] = [['Open'], ['In Progress'], ['Testing']];
   pieChartData: number[] = [];
   pieChartType: ChartType = 'pie';
   pieChartLegend = true;
   pieChartColors = [
     {
-      backgroundColor: [
-        'rgba(255,0,0,0.3)',
-        'rgba(0,255,0,0.3)',
-        'rgba(0,0,255,0.3)',
-        'yellow'
-      ]
+      backgroundColor: ['#dc3545', '#ffe599', '#007bff']
     }
   ];
 
   constructor(private store: Store<fromTickets.State>) {}
 
   ngOnInit(): void {
-    this.pieChartData = [1, 2, 2, 1];
+    this.store.select(selectAllTickets).subscribe((tickets) => {
+      let open = 0;
+      let inProgress = 0;
+      let testing = 0;
 
-    this.store
-      .select(selectAllTickets)
-      .subscribe((hier) => console.log('hier', hier));
+      tickets.map((ticket) => {
+        switch (ticket.status) {
+          case Status.OPEN:
+            open++;
+            break;
+          case Status.IN_PROGRESS:
+            inProgress++;
+            break;
+          case Status.TESTING:
+            testing++;
+            break;
+        }
+      });
+
+      this.pieChartData = [open, inProgress, testing];
+    });
   }
 }
