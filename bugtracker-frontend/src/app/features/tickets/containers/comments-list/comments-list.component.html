@@ -11,7 +11,11 @@
   <hr class="comments__subtitle-divider" />
   <form novalidate (ngSubmit)="createComment()" [formGroup]="ticketForm">
     <div class="form-group">
-      <textarea formControlName="comment" rows="10"></textarea>
+      <textarea
+        formControlName="comment"
+        rows="10"
+        placeholder="Write something... You can use markdown ;)"
+      ></textarea>
     </div>
     <div class="form-group comments__button-wrapper">
       <button
