@@ -4,7 +4,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
-import { editorConfig } from '../../../../../assets/config/config.angular-editor';
 import { commentForm } from '../../models/forms';
 import { Comment } from '../../models/ticket';
 import { CommentsControlService } from '../../services/comments-control.service';
@@ -22,7 +21,6 @@ export class CommentsListComponent implements OnInit {
   comments: Array<Comment>;
   commentsForm: FormGroup;
   ticketForm = commentForm;
-  editorConfig = { ...editorConfig, placeholder: 'Write a comment here...' };
 
   ticket$ = this.store.select(selectCurrentTicket);
   loading$ = this.store.select(selectLoading);

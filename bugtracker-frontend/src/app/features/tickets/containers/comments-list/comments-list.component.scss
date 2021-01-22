@@ -9,5 +9,14 @@
     &__button-wrapper {
       text-align: right;
     }
+
+    &__subtitle {
+      margin: 2rem 0 0.5rem;
+    }
+
+    &__subtitle-divider {
+      margin: auto 0.6rem 2rem 0rem;
+      width: 250px;
+    }
   }
 }

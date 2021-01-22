@@ -1,29 +1,31 @@
 <div *ngIf="!editMode" (click)="editMode = true" class="inline-edit">
-  <ng-container *ngIf="type == 'select' && selectItems; else defaultTemplate">
-    {{ control.value | selectValue: selectItems }}
+  <ng-container [ngSwitch]="type">
+    <markdown *ngSwitchCase="'editor'" [data]="control.value"></markdown>
+    <ng-container *ngSwitchCase="'select'">
+      <ng-container *ngIf="selectItems">
+        {{ control.value | selectValue: selectItems }}
+      </ng-container>
+    </ng-container>
+    <ng-container *ngSwitchDefault>{{ control.value }}</ng-container>
   </ng-container>
-  <ng-template #defaultTemplate>
-    {{ control.value }}
-  </ng-template>
   <fa-icon class="inline-edit__icon" [icon]="faPencilAlt"></fa-icon>
 </div>
 
 <ng-container *ngIf="editMode" [ngSwitch]="type">
   <ng-container *ngSwitchCase="'editor'">
-    <angular-editor
+    <textarea
       [formControl]="control"
-      [config]="editorConfig"
       (focusout)="onFocusOut()"
       appAutoFocus
       ngDefaultControl
-    ></angular-editor>
+      rows="10"
+    ></textarea>
   </ng-container>
 
   <ng-container *ngSwitchCase="'select'">
     <select
       class="form-select inline-edit__select"
       [formControl]="control"
-      [config]="editorConfig"
       (focusout)="onFocusOut()"
       (keydown.enter)="$event.target.blur()"
       appAutoFocus

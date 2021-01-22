@@ -2,8 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
-import { editorConfig } from '../../../../assets/config/config.angular-editor';
-
 @Component({
   selector: 'app-inline-edit',
   templateUrl: './inline-edit.component.html',
@@ -16,7 +14,6 @@ export class InlineEditComponent {
   @Output() focusOut = new EventEmitter();
 
   faPencilAlt = faPencilAlt;
-  editorConfig = editorConfig;
   editMode = false;
 
   constructor() {}

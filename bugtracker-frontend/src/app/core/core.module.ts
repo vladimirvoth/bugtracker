@@ -1,10 +1,11 @@
+import { MarkdownModule } from 'ngx-markdown';
+
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthEffects } from '@features/auth/store/auth.effects';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { AngularEditorModule } from '@kolkov/angular-editor';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
@@ -47,7 +48,7 @@ import { UserEffects } from './store/user/user.effects';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularEditorModule
+    MarkdownModule
   ],
   exports: [LayoutComponent, InlineEditComponent, SelectValuePipe, EllipsisPipe]
 })

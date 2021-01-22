@@ -64,7 +64,7 @@
     }
 
     &__extend-container {
-      z-index: 1;
+      z-index: 999;
       visibility: hidden;
       position: fixed;
       top: 0;

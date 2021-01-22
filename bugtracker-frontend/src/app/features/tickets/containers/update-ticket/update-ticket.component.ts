@@ -1,6 +1,6 @@
 import { filter } from 'rxjs/operators';
 
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 
@@ -16,8 +16,6 @@ import { selectCurrentTicket, selectLoading } from '../../store/tickets.selector
   styleUrls: ['./update-ticket.component.scss']
 })
 export class UpdateTicketComponent implements OnInit {
-  @ViewChild('comment') comment: ElementRef;
-
   id: string;
   ticketForm = updateTicketForm;
   types = types;

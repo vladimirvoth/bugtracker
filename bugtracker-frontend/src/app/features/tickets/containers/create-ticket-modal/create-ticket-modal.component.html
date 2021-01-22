@@ -87,10 +87,7 @@
       </span>
     </div>
     <div class="form-group">
-      <angular-editor
-        formControlName="description"
-        [config]="editorConfig"
-      ></angular-editor>
+      <textarea formControlName="description" rows="10"></textarea>
       <span
         class="error-feedback"
         *ngIf="
