@@ -7,7 +7,6 @@ const logger = require('morgan');
 const passport = require('passport');
 const createError = require('http-errors');
 const sslRedirect = require('heroku-ssl-redirect').default;
-const basicAuth = require('express-basic-auth');
 
 require('dotenv').config();
 
@@ -34,15 +33,6 @@ mongoose.connection.on('connected', () => {
  */
 const app = express();
 const port = process.env.PORT || 8080;
-
-if (process.env.HOST !== 'http://localhost:8080') {
-  app.use(
-    basicAuth({
-      users: { user: process.env.BASICAUTHPASSWORD },
-      challenge: true
-    })
-  );
-}
 
 app.use(sslRedirect());
 app.use(logger('dev'));

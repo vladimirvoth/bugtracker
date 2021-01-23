@@ -15,7 +15,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SideNavbarComponent } from './components/side-navbar/side-navbar.component';
 import { DataPrivacyComponent } from './containers/data-privacy/data-privacy.component';
 import { HomeComponent } from './containers/home/home.component';
-import { ImprintComponent } from './containers/imprint/imprint.component';
 import { LayoutComponent } from './containers/layout/layout.component';
 import { LegalComponent } from './containers/legal/legal.component';
 import { AutoFocusDirective } from './directives/auto-focus.directive';
@@ -34,7 +33,6 @@ import { UserEffects } from './store/user/user.effects';
     FooterComponent,
     LegalComponent,
     DataPrivacyComponent,
-    ImprintComponent,
     InlineEditComponent,
     AutoFocusDirective,
     SelectValuePipe,
