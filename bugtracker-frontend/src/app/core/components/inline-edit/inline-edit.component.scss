@@ -4,8 +4,10 @@
   display: block;
 
   .inline-edit {
+    position: relative;
     padding: 0.4rem 0.6rem;
     border: 1px solid transparent;
+    border-radius: $br-minimal;
 
     &:hover {
       cursor: pointer;
@@ -18,7 +20,9 @@
 
     &__icon {
       display: none;
-      float: right;
+      position: absolute;
+      right: 8px;
+      top: 5px;
       color: $fs-color-form;
       font-size: 14px;
     }
@@ -33,7 +37,7 @@
       width: 250px;
       padding: 0.5rem;
       border-color: $t1-border-color;
-      border-radius: 4px;
+      border-radius: $br-minimal;
       color: $fs-color-form;
     }
   }

@@ -24,6 +24,11 @@ textarea {
   padding: 1rem;
 }
 
+blockquote {
+  border-left: 5px solid $fs-color-select;
+  padding-left: 5px;
+}
+
 /**
  * Buttons
  */

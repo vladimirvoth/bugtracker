@@ -28,12 +28,7 @@ router.post('/email', async (req, res) => {
 });
 
 const registerValidation = [
-  body('username')
-    .not()
-    .isEmpty()
-    .withMessage(content.emptyUsername)
-    .trim()
-    .escape(),
+  body('username').not().isEmpty().withMessage(content.emptyUsername).trim(),
   body('email')
     .isEmail()
     .withMessage(content.invalidEmailAddress)
@@ -58,7 +53,6 @@ const registerValidation = [
     })
     .withMessage(content.invalidPassword)
     .trim()
-    .escape()
 ];
 
 router.post('/register', registerValidation, (req, res) => {

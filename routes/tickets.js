@@ -12,26 +12,22 @@ const ticketValidation = [
     .not()
     .isEmpty()
     .withMessage(content.tickets.emptyTitle)
-    .trim()
-    .escape(),
+    .trim(),
   body('ticket.type')
     .not()
     .isEmpty()
     .withMessage(content.tickets.emptyType)
-    .trim()
-    .escape(),
+    .trim(),
   body('ticket.priority')
     .not()
     .isEmpty()
     .withMessage(content.tickets.emptyPriority)
-    .trim()
-    .escape(),
+    .trim(),
   body('ticket.description')
     .not()
     .isEmpty()
     .withMessage(content.tickets.emptyDescription)
     .trim()
-    .escape()
 ];
 
 router.get(
@@ -103,8 +99,8 @@ router.get(
 );
 
 const updateTicketValidation = [
-  body('value').not().isEmpty().trim().escape(),
-  body('property').not().isEmpty().trim().escape()
+  body('value').not().isEmpty().trim(),
+  body('property').not().isEmpty().trim()
 ];
 
 router.patch(
@@ -144,7 +140,7 @@ router.patch(
   }
 );
 
-const commentValidation = [body('comment').not().isEmpty().trim().escape()];
+const commentValidation = [body('comment').not().isEmpty().trim()];
 
 router.post(
   '/:id/comments',

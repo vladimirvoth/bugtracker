@@ -1,6 +1,10 @@
 <div *ngIf="!editMode" (click)="editMode = true" class="inline-edit">
   <ng-container [ngSwitch]="type">
-    <markdown *ngSwitchCase="'editor'" [data]="control.value"></markdown>
+    <markdown
+      *ngSwitchCase="'editor'"
+      [data]="control.value"
+      class="inline-edit__markdown"
+    ></markdown>
     <ng-container *ngSwitchCase="'select'">
       <ng-container *ngIf="selectItems">
         {{ control.value | selectValue: selectItems }}
