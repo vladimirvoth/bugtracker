@@ -73,5 +73,15 @@
       position: relative;
       top: 4px;
     }
+
+    &__dropdown-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    &__dropdown-list-item {
+      margin-bottom: 16px;
+      text-align: center;
+    }
   }
 }

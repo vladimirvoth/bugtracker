@@ -28,9 +28,16 @@
               >Hello, {{ (user$ | async).username }}</span
             >
             <hr />
-            <a class="p-2 text-dark" href="#" (click)="logout($event)"
-              >Logout</a
-            >
+            <ul class="navbar__dropdown-list">
+              <li class="navbar__dropdown-list-item">
+                <a class="p-2 text-dark" href="/dashboard">Dashboard</a>
+              </li>
+              <li class="navbar__dropdown-list-item">
+                <a class="p-2 text-dark" href="#" (click)="logout($event)"
+                  >Logout</a
+                >
+              </li>
+            </ul>
           </div>
         </div>
       </nav>
