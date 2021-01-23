@@ -36,15 +36,6 @@ const UserSchema = mongoose.Schema({
 
 const User = (module.exports = mongoose.model('User', UserSchema));
 
-module.exports.getUserById = (id, callback) => {
-  User.findById(id, callback);
-};
-
-module.exports.getUserByEmail = (email, callback) => {
-  const query = { email };
-  User.findOne(query, callback);
-};
-
 module.exports.findOrCreate = async (user, callback) => {
   const userExists = await User.findOne({
     email: user.email
@@ -57,12 +48,4 @@ module.exports.findOrCreate = async (user, callback) => {
   } else {
     callback(userExists);
   }
-};
-
-module.exports.comparePassword = (candidatePassword, hash, callback) => {
-  bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
-    if (err) throw err;
-
-    callback(null, isMatch);
-  });
 };

@@ -12,19 +12,24 @@ const content = require('../content');
 require('dotenv').config();
 
 router.post('/email', async (req, res) => {
-  const { email } = req.body;
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({
+      email
+    });
 
-  const user = await User.findOne({
-    email
-  });
-
-  if (user && user.length !== 0) {
-    return res.status(409).json({
-      msg: content.existingEmailAddress
+    if (user && user.length !== 0) {
+      return res.status(409).json({
+        msg: content.existingEmailAddress
+      });
+    } else {
+      return res.json({ success: true });
+    }
+  } catch {
+    return res.status(404).json({
+      msg: content.tickets.notFound
     });
   }
-
-  return res.json({ success: true });
 });
 
 const registerValidation = [
@@ -56,42 +61,45 @@ const registerValidation = [
 ];
 
 router.post('/register', registerValidation, (req, res) => {
-  const errors = validationResult(req).array();
-  const { username, email, password } = req.body;
+  try {
+    const errors = validationResult(req).array();
+    const { username, email, password } = req.body;
 
-  if (errors.length > 0) {
-    return res.status(422).json({ msg: errors[0].msg });
-  } else {
-    const emailConfirmationCode = createRandomString(30);
+    if (errors.length > 0) {
+      return res.status(422).json({ msg: errors[0].msg });
+    } else {
+      const emailConfirmationCode = createRandomString(30);
 
-    const newUser = new User({
-      username,
-      email,
-      authType: 'LOCAL',
-      emailConfirmationCode: emailConfirmationCode
-    });
-
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(password, salt, (err, hash) => {
-        if (err) throw err;
-        newUser.password = hash;
-
-        newUser
-          .save()
-          .then((user) => {
-            res.json(user);
-          })
-          .catch((errors) => res.status(422).json({ msg: errors[0].msg }));
+      const newUser = new User({
+        username,
+        email,
+        authType: 'LOCAL',
+        emailConfirmationCode: emailConfirmationCode
       });
+
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(password, salt, async (err, hash) => {
+          if (err) throw err;
+
+          newUser.password = hash;
+
+          const savedUser = newUser.save();
+
+          res.json(savedUser);
+        });
+      });
+    }
+  } catch {
+    return res.status(404).json({
+      msg: content.tickets.notFound
     });
   }
 });
 
-router.post('/login', (req, res) => {
-  const { email, password } = req.body;
-
-  User.getUserByEmail(email, (err, user) => {
-    if (err) throw err;
+router.post('/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(401).json({
@@ -99,14 +107,13 @@ router.post('/login', (req, res) => {
       });
     }
 
-    User.comparePassword(password, user.password, (err, isMatch) => {
+    bcrypt.compare(password, user.password, (err, isMatch) => {
       if (err) throw err;
 
       if (isMatch) {
         const token = jwt.sign({ data: user }, process.env.SECRET, {
           expiresIn: process.env.JWT_EXPIRES_IN
         });
-
         res.json({
           token: 'JWT ' + token
         });
@@ -116,7 +123,11 @@ router.post('/login', (req, res) => {
         });
       }
     });
-  });
+  } catch {
+    return res.status(404).json({
+      msg: content.tickets.notFound
+    });
+  }
 });
 
 router.get(

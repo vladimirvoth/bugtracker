@@ -38,8 +38,4 @@ const TicketSchema = mongoose.Schema({
   }
 });
 
-const Ticket = (module.exports = mongoose.model('Ticket', TicketSchema));
-
-module.exports.getTicketById = (id, callback) => {
-  Ticket.findById(id, callback);
-};
+module.exports = mongoose.model('Ticket', TicketSchema);

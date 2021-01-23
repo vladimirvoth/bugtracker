@@ -34,9 +34,15 @@ router.get(
   '/',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
-    const tickets = await Ticket.find({ created_by: req.user.id });
+    try {
+      const tickets = await Ticket.find({ created_by: req.user.id });
 
-    res.json(tickets);
+      res.json(tickets);
+    } catch {
+      return res.status(404).json({
+        msg: content.tickets.notFound
+      });
+    }
   }
 );
 
@@ -45,25 +51,27 @@ router.post(
   ticketValidation,
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
-    const errors = validationResult(req).array();
-    const { ticket } = req.body;
+    try {
+      const errors = validationResult(req).array();
+      const { ticket } = req.body;
 
-    if (errors.length > 0) {
-      return res.status(422).json({ msg: errors[0].msg });
-    } else {
-      const newTicket = new Ticket({
-        ...ticket,
-        ...{
-          created_by: req.user.id
-        }
+      if (errors.length > 0) {
+        return res.status(422).json({ msg: errors[0].msg });
+      } else {
+        const newTicket = new Ticket({
+          ...ticket,
+          ...{
+            created_by: req.user.id
+          }
+        });
+        const savedTicket = await newTicket.save();
+
+        res.json(savedTicket);
+      }
+    } catch {
+      return res.status(404).json({
+        msg: content.tickets.notFound
       });
-
-      newTicket
-        .save()
-        .then((ticket) => {
-          res.json(ticket);
-        })
-        .catch((errors) => res.status(422).json({ msg: errors[0].msg }));
     }
   }
 );
@@ -72,27 +80,32 @@ router.get(
   '/:id',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
-    const id = req.params.id;
+    try {
+      const id = req.params.id;
+      const ticket = await Ticket.findById(id);
 
-    const ticket = await Ticket.findById(id);
+      if (ticket.created_by !== req.user.id) {
+        return res.status(401).json({
+          msg: content.tickets.notFound
+        });
+      } else {
+        const comments = await Comment.find({ ticket_id: id });
+        const user = await User.findById(ticket.created_by);
 
-    if (ticket.created_by !== req.user.id) {
-      return res.status(401).json({
-        msg: content.tickets.notFound
-      });
-    } else {
-      const comments = await Comment.find({ ticket_id: id });
-      const user = await User.findById(ticket.created_by);
-
-      res.json({
-        ...ticket._doc,
-        ...{ comments },
-        ...{
-          created_by_user: {
-            username: user.username,
-            picture: user.picture
+        res.json({
+          ...ticket._doc,
+          ...{ comments },
+          ...{
+            created_by_user: {
+              username: user.username,
+              picture: user.picture
+            }
           }
-        }
+        });
+      }
+    } catch {
+      return res.status(404).json({
+        msg: content.tickets.notFound
       });
     }
   }
@@ -147,35 +160,41 @@ router.post(
   commentValidation,
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
-    const errors = validationResult(req).array();
-    const id = req.params.id;
-    const { comment } = req.body;
+    try {
+      const errors = validationResult(req).array();
+      const id = req.params.id;
+      const { comment } = req.body;
 
-    if (errors.length > 0) {
-      return res.status(422).json({ msg: errors[0].msg });
-    } else {
-      const ticket = await Ticket.findOne({ _id: id });
+      if (errors.length > 0) {
+        return res.status(422).json({ msg: errors[0].msg });
+      } else {
+        const ticket = await Ticket.findOne({ _id: id });
 
-      const newComment = new Comment({
-        ticket_id: id,
-        comment,
-        created_by: req.user.id
-      });
+        const newComment = new Comment({
+          ticket_id: id,
+          comment,
+          created_by: req.user.id
+        });
 
-      await newComment.save();
+        await newComment.save();
 
-      const comments = await Comment.find({ ticket_id: id });
-      const user = await User.findById(ticket.created_by);
+        const comments = await Comment.find({ ticket_id: id });
+        const user = await User.findById(ticket.created_by);
 
-      res.json({
-        ...ticket._doc,
-        ...{ comments },
-        ...{
-          created_by_user: {
-            username: user.username,
-            picture: user.picture
+        res.json({
+          ...ticket._doc,
+          ...{ comments },
+          ...{
+            created_by_user: {
+              username: user.username,
+              picture: user.picture
+            }
           }
-        }
+        });
+      }
+    } catch {
+      return res.status(404).json({
+        msg: content.tickets.notFound
       });
     }
   }

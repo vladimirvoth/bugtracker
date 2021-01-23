@@ -14,18 +14,18 @@ module.exports = function (passport) {
   };
 
   passport.use(
-    new JwtStrategy(opts, (jwtPayload, done) => {
-      User.getUserById(jwtPayload.data._id, (err, user) => {
-        if (err) {
-          return done(err, false);
-        }
+    new JwtStrategy(opts, async (jwtPayload, done) => {
+      try {
+        const user = await User.findById(jwtPayload.data._id);
 
         if (user) {
           return done(null, user);
         } else {
           return done(null, false);
         }
-      });
+      } catch {
+        return done(err, false);
+      }
     })
   );
 
