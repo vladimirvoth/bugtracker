@@ -13,17 +13,17 @@ export class TicketsService {
   constructor(private http: HttpClient) {}
 
   loadTickets(): Observable<Array<Ticket>> {
-    return this.http.get<Array<Ticket>>(`${environment.baseUrl}/tickets`);
+    return this.http.get<Array<Ticket>>(`${environment.apiUrl}/tickets`);
   }
 
   createTicket(ticket: Ticket): Observable<Ticket> {
-    return this.http.post<Ticket>(`${environment.baseUrl}/tickets`, {
+    return this.http.post<Ticket>(`${environment.apiUrl}/tickets`, {
       ticket
     });
   }
 
   getTicket(id: string): Observable<Ticket> {
-    return this.http.get<Ticket>(`${environment.baseUrl}/tickets/${id}`);
+    return this.http.get<Ticket>(`${environment.apiUrl}/tickets/${id}`);
   }
 
   updateTicket(
@@ -31,7 +31,7 @@ export class TicketsService {
     value: string | number,
     property: string
   ): Observable<Ticket> {
-    return this.http.patch<Ticket>(`${environment.baseUrl}/tickets/${id}`, {
+    return this.http.patch<Ticket>(`${environment.apiUrl}/tickets/${id}`, {
       value,
       property
     });
@@ -39,7 +39,7 @@ export class TicketsService {
 
   createComment(id: string, comment: string): Observable<Ticket> {
     return this.http.post<Ticket>(
-      `${environment.baseUrl}/tickets/${id}/comments`,
+      `${environment.apiUrl}/tickets/${id}/comments`,
       {
         comment
       }
@@ -52,7 +52,7 @@ export class TicketsService {
     comment: string
   ): Observable<Ticket> {
     return this.http.patch<Ticket>(
-      `${environment.baseUrl}/tickets/${id}/comments/${commentId}`,
+      `${environment.apiUrl}/tickets/${id}/comments/${commentId}`,
       {
         comment
       }
@@ -61,7 +61,7 @@ export class TicketsService {
 
   removeComment(id: string, commentId: string): Observable<Ticket> {
     return this.http.delete<Ticket>(
-      `${environment.baseUrl}/tickets/${id}/comments/${commentId}`
+      `${environment.apiUrl}/tickets/${id}/comments/${commentId}`
     );
   }
 }

@@ -54,7 +54,7 @@ export class TicketsEffects {
       this.actions$.pipe(
         ofType(TicketsActions.createTicketSuccess),
         tap((payload) => {
-          window.location.href = `${environment.baseUrl}/dashboard/tickets/update/${payload.ticket._id}`;
+          window.location.href = `${environment.baseUrl}/tickets/${payload.ticket._id}`;
         })
       ),
     { dispatch: false }

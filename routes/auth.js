@@ -141,6 +141,8 @@ router.get(
   '/facebook/callback',
   passport.authenticate('facebook', { scope: 'email' }),
   (req, res) => {
+    console.log('hier', req.user._json.picture.data);
+
     const user = {
       username: req.user.displayName,
       email: req.user._json.email,

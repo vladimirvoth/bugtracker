@@ -15,10 +15,10 @@ export class SocialLoginComponent {
   constructor() {}
 
   githubAuth() {
-    window.location.href = `${environment.baseUrl}/auth/github`;
+    window.location.href = `${environment.apiUrl}/auth/github`;
   }
 
   facebookAuth() {
-    window.location.href = `${environment.baseUrl}/auth/facebook`;
+    window.location.href = `${environment.apiUrl}/auth/facebook`;
   }
 }

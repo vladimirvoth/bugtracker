@@ -18,7 +18,7 @@ export class AuthService {
   }
 
   emailExists(email: string) {
-    return this.http.post(`${environment.baseUrl}/auth/email`, {
+    return this.http.post(`${environment.apiUrl}/auth/email`, {
       email
     });
   }
@@ -28,7 +28,7 @@ export class AuthService {
     email: string,
     password: string
   ): Observable<User> {
-    return this.http.post<User>(`${environment.baseUrl}/auth/register`, {
+    return this.http.post<User>(`${environment.apiUrl}/auth/register`, {
       username,
       email,
       password
@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<UserAuth> {
-    return this.http.post<UserAuth>(`${environment.baseUrl}/auth/login`, {
+    return this.http.post<UserAuth>(`${environment.apiUrl}/auth/login`, {
       email,
       password
     });
@@ -49,7 +49,7 @@ export class AuthService {
 
   resetPassword(email: string): Observable<{ success: boolean }> {
     return this.http.post<{ success: boolean }>(
-      `${environment.baseUrl}/auth/reset-password`,
+      `${environment.apiUrl}/auth/reset-password`,
       {
         email
       }

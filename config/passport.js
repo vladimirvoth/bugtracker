@@ -34,7 +34,7 @@ module.exports = function (passport) {
       {
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
-        callbackURL: `${process.env.HOST}/auth/facebook/callback`,
+        callbackURL: `${process.env.HOST}/api/auth/facebook/callback`,
         profileFields: ['id', 'displayName', 'email', 'picture'],
         enableProof: true
       },
@@ -49,7 +49,7 @@ module.exports = function (passport) {
       {
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_SECRET_ID,
-        callbackURL: `${process.env.HOST}/auth/github/callback`,
+        callbackURL: `${process.env.HOST}/api/auth/github/callback`,
         scope: 'user:email'
       },
       function (accessToken, refreshToken, profile, done) {

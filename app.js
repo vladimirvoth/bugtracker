@@ -44,9 +44,9 @@ app.use(passport.session());
 
 require('./config/passport')(passport);
 
-app.use('/auth', authRouter);
-app.use('/users', usersRouter);
-app.use('/tickets', ticketsRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/tickets', ticketsRouter);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));
