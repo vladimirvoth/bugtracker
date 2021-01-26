@@ -44,6 +44,9 @@ app.use(passport.session());
 
 require('./config/passport')(passport);
 
+/**
+ * Routes
+ */
 app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/tickets', ticketsRouter);

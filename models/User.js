@@ -36,16 +36,17 @@ const UserSchema = mongoose.Schema({
 
 const User = (module.exports = mongoose.model('User', UserSchema));
 
-module.exports.findOrCreate = async (user, callback) => {
+module.exports.findOrCreate = async (user) => {
   const userExists = await User.findOne({
     email: user.email
   });
 
   if (!userExists) {
     const newUser = new User(user);
+    const savedUser = await newUser.save();
 
-    newUser.save().then((user) => callback(user));
+    return savedUser;
   } else {
-    callback(userExists);
+    return userExists;
   }
 };

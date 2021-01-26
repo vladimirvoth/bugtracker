@@ -27,7 +27,7 @@ router.post('/email', async (req, res) => {
     }
   } catch {
     return res.status(404).json({
-      msg: content.tickets.notFound
+      msg: content.standardError
     });
   }
 });
@@ -91,7 +91,7 @@ router.post('/register', registerValidation, (req, res) => {
     }
   } catch {
     return res.status(404).json({
-      msg: content.tickets.notFound
+      msg: content.standardError
     });
   }
 });
@@ -125,7 +125,7 @@ router.post('/login', async (req, res) => {
     });
   } catch {
     return res.status(404).json({
-      msg: content.tickets.notFound
+      msg: content.standardError
     });
   }
 });
@@ -140,25 +140,29 @@ router.get(
 router.get(
   '/facebook/callback',
   passport.authenticate('facebook', { scope: 'email' }),
-  (req, res) => {
-    console.log('hier', req.user._json.picture.data);
+  async (req, res) => {
+    try {
+      const user = {
+        username: req.user.displayName,
+        email: req.user._json.email,
+        authType: 'FACEBOOK',
+        emailConfirmed: true,
+        picture: req.user._json.picture.data.url
+      };
 
-    const user = {
-      username: req.user.displayName,
-      email: req.user._json.email,
-      authType: 'FACEBOOK',
-      emailConfirmed: true,
-      picture: req.user._json.picture.data.url
-    };
+      const newUser = await User.findOrCreate(user);
 
-    User.findOrCreate(user, (user) => {
-      const token = jwt.sign({ data: user }, process.env.SECRET, {
+      const token = jwt.sign({ data: newUser }, process.env.SECRET, {
         expiresIn: process.env.JWT_EXPIRES_IN
       });
 
       res.cookie('JWT', 'JWT ' + token);
       res.redirect('/auth/social-auth-callback');
-    });
+    } catch {
+      return res.status(404).json({
+        msg: content.standardError
+      });
+    }
   }
 );
 
@@ -172,23 +176,29 @@ router.get(
 router.get(
   '/github/callback',
   passport.authenticate('github', { scope: 'user:email' }),
-  (req, res) => {
-    const user = {
-      username: req.user._json.login,
-      email: req.user.emails[0].value,
-      authType: 'GITHUB',
-      emailConfirmed: true,
-      picture: req.user._json.avatar_url
-    };
+  async (req, res) => {
+    try {
+      const user = {
+        username: req.user._json.login,
+        email: req.user.emails[0].value,
+        authType: 'GITHUB',
+        emailConfirmed: true,
+        picture: req.user._json.avatar_url
+      };
 
-    User.findOrCreate(user, (user) => {
-      const token = jwt.sign({ data: user }, process.env.SECRET, {
+      const newUser = await User.findOrCreate(user);
+
+      const token = jwt.sign({ data: newUser }, process.env.SECRET, {
         expiresIn: process.env.JWT_EXPIRES_IN
       });
 
       res.cookie('JWT', 'JWT ' + token);
       res.redirect('/auth/social-auth-callback');
-    });
+    } catch {
+      return res.status(404).json({
+        msg: content.standardError
+      });
+    }
   }
 );
 
