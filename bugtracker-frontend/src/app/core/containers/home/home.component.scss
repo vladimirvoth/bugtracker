@@ -51,13 +51,11 @@
   }
 
   .testimonials {
-    height: 200px;
     padding: 40px;
     background-color: $t1-bg-color-light;
   }
 
   .call-to-action {
-    height: 300px;
     padding: 110px;
     background: $t1-bg-color-secondary;
     color: $white;
@@ -68,6 +66,7 @@
     }
 
     &__subtitle {
+      margin-bottom: 0;
       font-size: $fs-h3;
       line-height: $lh-h3;
     }

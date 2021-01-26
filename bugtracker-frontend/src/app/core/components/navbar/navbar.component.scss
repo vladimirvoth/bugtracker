@@ -1,4 +1,5 @@
 @import '../../../../styles/globals/vars.scss';
+@import '../../../../styles/globals/breakpoints.scss';
 
 :host {
   .navbar {
@@ -16,11 +17,6 @@
       display: inline-block;
       position: relative;
       top: 4px;
-    }
-
-    &__register-btn {
-      border-color: #ff0476;
-      background-color: #ff0476;
     }
 
     &__dropdown {
@@ -69,9 +65,37 @@
       border-radius: $br-round-100;
     }
 
-    &-with-picture {
-      position: relative;
-      top: 4px;
+    &__navigation {
+      @include breakpoint($sm) {
+        display: none;
+      }
+
+      &-with-picture {
+        position: relative;
+        top: 4px;
+      }
+    }
+
+    &__register-btn {
+      border-color: $t1-accent-color;
+      background-color: $t1-accent-color;
+
+      @include breakpoint($sm) {
+        display: none;
+      }
+    }
+
+    &__login-link-mobile {
+      display: none;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 18px;
+      color: $fs-color-secondary;
+
+      @include breakpoint($sm) {
+        display: block;
+      }
     }
 
     &__dropdown-list {

@@ -2,7 +2,7 @@ import { Subject } from 'rxjs';
 
 import { Component } from '@angular/core';
 import { logout } from '@features/auth/store/auth.actions';
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 
 import { loadUser } from '../../store/user/user.actions';
@@ -16,6 +16,7 @@ import { selectLoading, selectUser } from '../../store/user/user.selectors';
 })
 export class NavbarComponent {
   faAngleRight = faAngleRight;
+  faSignInAlt = faSignInAlt;
 
   protected componentDestroyed$ = new Subject<void>();
 

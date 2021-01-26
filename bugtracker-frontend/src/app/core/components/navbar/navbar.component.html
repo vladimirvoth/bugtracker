@@ -1,7 +1,7 @@
 <div
-  class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm"
+  class="navbar d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm"
 >
-  <a class="my-0 mr-md-auto navbar__logo" href="/">
+  <a class="navbar__logo my-0 mr-md-auto" href="/">
     <img
       class="navbar__logo-image"
       src="/assets/svg/logo.svg"
@@ -14,7 +14,9 @@
       *ngIf="user$ | async; then loggedIn; else loggedOut"
     ></ng-container>
     <ng-template #loggedIn>
-      <nav class="my-2 my-md-0 mr-md-3 navbar-with-picture">
+      <nav
+        class="navbar__navigation navbar__navigation-with-picture my-2 my-md-0 mr-md-3"
+      >
         <div class="navbar__dropdown">
           <img
             class="navbar__profile-picture"
@@ -41,14 +43,20 @@
           </div>
         </div>
       </nav>
+      <a class="navbar__login-link-mobile" href="/dashboard"
+        ><fa-icon [icon]="faSignInAlt"></fa-icon
+      ></a>
     </ng-template>
     <ng-template #loggedOut>
-      <nav class="my-2 my-md-0 mr-md-3">
+      <nav class="navbar__navigation my-2 my-md-0 mr-md-3">
         <a class="p-2 text-dark" href="/auth">Login</a>
       </nav>
-      <a class="btn btn-primary navbar__register-btn" href="/auth/register"
+      <a class="navbar__register-btn btn btn-primary" href="/auth/register"
         >Start Now <fa-icon [icon]="faAngleRight"></fa-icon>
       </a>
+      <a class="navbar__login-link-mobile" href="/auth"
+        ><fa-icon [icon]="faSignInAlt"></fa-icon
+      ></a>
     </ng-template>
   </ng-container>
 </div>
