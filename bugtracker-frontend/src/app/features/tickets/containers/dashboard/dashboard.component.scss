@@ -7,7 +7,7 @@
   .dashboard {
     padding: 4rem 2rem;
 
-    @include breakpoint($md) {
+    @include breakpoint($lg) {
       padding: 6rem 1rem;
     }
 
@@ -20,20 +20,11 @@
     }
 
     &__widget {
-      height: 450px;
-      margin: auto 1rem;
+      position: relative;
+      margin: 1rem;
       padding: 1rem 1.5rem;
       box-shadow: $bs-standard;
       border-radius: $br-minimal;
-
-      @include breakpoint($md) {
-        height: auto;
-        margin-bottom: 1rem;
-      }
-
-      @include breakpoint($sm) {
-        margin-bottom: 2rem;
-      }
     }
 
     &__btn {
@@ -49,7 +40,7 @@
       height: 72px;
       border-radius: $br-round-100;
 
-      @include breakpoint($md) {
+      @include breakpoint($lg) {
         top: 16px;
         right: 16px;
       }

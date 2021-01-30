@@ -1,4 +1,6 @@
-.chart {
-  display: block;
-  height: 400px;
+:host {
+  .chart {
+    display: block;
+    height: 400px;
+  }
 }

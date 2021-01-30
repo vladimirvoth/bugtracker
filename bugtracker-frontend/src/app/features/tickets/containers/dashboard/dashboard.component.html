@@ -1,14 +1,14 @@
 <div class="dashboard">
   <div *ngIf="(tickets$ | async).length && !(loading$ | async)" class="row">
-    <div class="dashboard__widget col-md">
+    <div class="dashboard__widget col-xl col-lg col-md">
       <app-tickets-list [tickets]="tickets$ | async"></app-tickets-list>
     </div>
-    <div class="dashboard__widget col-md">
+    <div class="dashboard__widget col-xl col-lg col-md">
       <app-chart-widget [tickets]="tickets$ | async"></app-chart-widget>
     </div>
   </div>
   <div *ngIf="!(tickets$ | async).length && !(loading$ | async)" class="row">
-    <div class="col-md">
+    <div class="col-lg col-md">
       <h2 class="dashboard__headline">
         You haven't created a ticket yet. Use the button below and to create a
         ticket. Clicking buttons is fun. Try it ;)

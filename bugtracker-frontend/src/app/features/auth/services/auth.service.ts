@@ -58,7 +58,6 @@ export class AuthService {
 
   logout() {
     localStorage.clear();
-    this.router.navigate(['/auth/login']);
-    // window.location.href = `${environment.baseUrl}/auth/login`;
+    window.location.href = `${environment.baseUrl}/auth/login`;
   }
 }
