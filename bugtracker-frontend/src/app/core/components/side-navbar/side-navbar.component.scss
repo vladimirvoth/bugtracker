@@ -19,6 +19,12 @@
       list-style: none;
       margin-top: 32px;
       padding-left: 0;
+
+      &-bottom {
+        position: fixed;
+        bottom: 64px;
+        left: 11px;
+      }
     }
 
     &__list-item {
@@ -41,11 +47,14 @@
     }
 
     &__bottom-container {
-      position: fixed;
+      position: absolute;
       bottom: 20px;
     }
 
     &__profile-picture {
+      position: fixed;
+      bottom: 24px;
+      left: 14px;
       width: 50px;
       border: 1px solid $white;
       border-radius: $br-round-100;
