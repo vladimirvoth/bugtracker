@@ -12,20 +12,6 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'dashboard',
-    component: LayoutComponent,
-    children: [
-      {
-        path: '',
-        loadChildren: () =>
-          import('./features/dashboard/dashboard.module').then(
-            (m) => m.DashboardModule
-          ),
-        canActivate: [AuthGuard]
-      }
-    ]
-  },
-  {
     path: 'tickets',
     component: LayoutComponent,
     children: [

@@ -1,0 +1,34 @@
+<div class="dashboard">
+  <div *ngIf="(tickets$ | async).length && !(loading$ | async)" class="row">
+    <div class="dashboard__widget col-md">
+      <app-tickets-list [tickets]="tickets$ | async"></app-tickets-list>
+    </div>
+    <div class="dashboard__widget col-md">
+      <app-chart-widget [tickets]="tickets$ | async"></app-chart-widget>
+    </div>
+  </div>
+  <div *ngIf="!(tickets$ | async).length && !(loading$ | async)" class="row">
+    <div class="col-md">
+      <h2 class="dashboard__headline">
+        You haven't created a ticket yet. Use the button below and to create a
+        ticket. Clicking buttons is fun. Try it ;)
+      </h2>
+      <button
+        type="button"
+        class="btn btn-primary dashboard__btn"
+        (click)="openModalWithComponent()"
+      >
+        Create a ticket
+      </button>
+    </div>
+  </div>
+</div>
+
+<button
+  *ngIf="(tickets$ | async).length"
+  type="button"
+  class="btn btn-primary dashboard__create-ticket-btn"
+  (click)="openModalWithComponent()"
+>
+  <fa-icon [icon]="faPlus"></fa-icon>
+</button>

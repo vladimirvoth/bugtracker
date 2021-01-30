@@ -15,7 +15,7 @@ export class SocialAuthCallbackComponent implements OnInit {
 
     if (token) {
       this.migrateJWTtoken(token);
-      window.location.href = `${environment.baseUrl}/dashboard`;
+      window.location.href = `${environment.baseUrl}/tickets`;
     }
   }
 

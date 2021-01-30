@@ -44,7 +44,7 @@ export class AuthService {
 
   authSuccess(token) {
     localStorage.setItem('token', JSON.stringify(token));
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/tickets']);
   }
 
   resetPassword(email: string): Observable<{ success: boolean }> {
@@ -59,5 +59,6 @@ export class AuthService {
   logout() {
     localStorage.clear();
     this.router.navigate(['/auth/login']);
+    // window.location.href = `${environment.baseUrl}/auth/login`;
   }
 }
