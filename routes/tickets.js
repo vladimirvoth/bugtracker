@@ -30,6 +30,13 @@ const ticketValidation = [
     .trim()
 ];
 
+const updateTicketValidation = [
+  body('value').not().isEmpty().trim(),
+  body('property').not().isEmpty().trim()
+];
+
+const commentValidation = [body('comment').not().isEmpty().trim()];
+
 router.get(
   '/',
   passport.authenticate('jwt', { session: false }),
@@ -37,7 +44,7 @@ router.get(
     try {
       const tickets = await Ticket.find({ created_by: req.user.id });
 
-      res.json(tickets);
+      return res.json(tickets);
     } catch {
       return res.status(404).json({
         msg: content.tickets.notFound
@@ -66,7 +73,7 @@ router.post(
         });
         const savedTicket = await newTicket.save();
 
-        res.json(savedTicket);
+        return res.json(savedTicket);
       }
     } catch {
       return res.status(404).json({
@@ -92,7 +99,7 @@ router.get(
         const comments = await Comment.find({ ticket_id: id });
         const user = await User.findById(ticket.created_by);
 
-        res.json({
+        return res.json({
           ...ticket._doc,
           ...{ comments },
           ...{
@@ -110,11 +117,6 @@ router.get(
     }
   }
 );
-
-const updateTicketValidation = [
-  body('value').not().isEmpty().trim(),
-  body('property').not().isEmpty().trim()
-];
 
 router.patch(
   '/:id',
@@ -134,7 +136,7 @@ router.patch(
         const comments = await Comment.find({ ticket_id: req.params.id });
         const user = await User.findById(ticket.created_by);
 
-        res.json({
+        return res.json({
           ...ticket._doc,
           ...{ comments },
           ...{
@@ -152,8 +154,6 @@ router.patch(
     }
   }
 );
-
-const commentValidation = [body('comment').not().isEmpty().trim()];
 
 router.post(
   '/:id/comments',
@@ -181,7 +181,7 @@ router.post(
         const comments = await Comment.find({ ticket_id: id });
         const user = await User.findById(ticket.created_by);
 
-        res.json({
+        return res.json({
           ...ticket._doc,
           ...{ comments },
           ...{
@@ -222,7 +222,7 @@ router.patch(
         const comments = await Comment.find({ ticket_id: req.params.id });
         const user = await User.findById(ticket.created_by);
 
-        res.json({
+        return res.json({
           ...ticket._doc,
           ...{ comments },
           ...{
@@ -256,7 +256,7 @@ router.delete(
       const comments = await Comment.find({ ticket_id: req.params.id });
       const user = await User.findById(ticket.created_by);
 
-      res.json({
+      return res.json({
         ...ticket._doc,
         ...{ comments },
         ...{

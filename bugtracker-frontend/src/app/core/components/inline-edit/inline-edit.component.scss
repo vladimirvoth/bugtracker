@@ -11,7 +11,7 @@
 
     &:hover {
       cursor: pointer;
-      border: 1px solid $t1-border-color;
+      border: 1px solid $border-color;
     }
 
     &:hover .inline-edit__icon {
@@ -36,7 +36,7 @@
     &__select {
       width: 250px;
       padding: 0.5rem;
-      border-color: $t1-border-color;
+      border-color: $border-color;
       border-radius: $br-minimal;
       color: $fs-color-form;
     }

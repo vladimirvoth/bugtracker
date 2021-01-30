@@ -11,27 +11,6 @@ const content = require('../content');
 
 require('dotenv').config();
 
-router.post('/email', async (req, res) => {
-  try {
-    const { email } = req.body;
-    const user = await User.findOne({
-      email
-    });
-
-    if (user && user.length !== 0) {
-      return res.status(409).json({
-        msg: content.existingEmailAddress
-      });
-    } else {
-      return res.json({ success: true });
-    }
-  } catch {
-    return res.status(404).json({
-      msg: content.standardError
-    });
-  }
-});
-
 const registerValidation = [
   body('username').not().isEmpty().withMessage(content.emptyUsername).trim(),
   body('email')
@@ -60,6 +39,27 @@ const registerValidation = [
     .trim()
 ];
 
+router.post('/email', async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({
+      email
+    });
+
+    if (user && user.length !== 0) {
+      return res.status(409).json({
+        msg: content.existingEmailAddress
+      });
+    } else {
+      return res.json({ success: true });
+    }
+  } catch {
+    return res.status(404).json({
+      msg: content.standardError
+    });
+  }
+});
+
 router.post('/register', registerValidation, (req, res) => {
   try {
     const errors = validationResult(req).array();
@@ -85,7 +85,7 @@ router.post('/register', registerValidation, (req, res) => {
 
           const savedUser = newUser.save();
 
-          res.json(savedUser);
+          return res.json(savedUser);
         });
       });
     }
@@ -114,7 +114,8 @@ router.post('/login', async (req, res) => {
         const token = jwt.sign({ data: user }, process.env.SECRET, {
           expiresIn: process.env.JWT_EXPIRES_IN
         });
-        res.json({
+
+        return res.json({
           token: 'JWT ' + token
         });
       } else {
@@ -203,7 +204,7 @@ router.get(
 );
 
 router.post('/reset-password', (req, res) => {
-  res.json({
+  return res.json({
     success: true
   });
 });

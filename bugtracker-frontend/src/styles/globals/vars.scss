@@ -14,18 +14,19 @@ $fs-color-primary: #212529;
 $fs-color-secondary: #333333;
 $fs-color-form: #495057;
 $fs-color-select: #6c757d;
-$t1-primary-color: #ffe599;
-$t1-success-color: #b6d7a8;
-$t1-error-color: #dc3545;
-$t1-info-color: #007bff;
-$t1-accent-color: #ff0476;
-$t1-bg-color-white: #ffffff;
-$t1-bg-color-light: #f5f6f8;
-$t1-bg-color-dark: #292f4c;
-$t1-bg-color-secondary: #2b2c5d;
-$t1-border-color: #ced4da;
+$border-color: #ced4da;
+$bg-color-primary: #292f4c;
+$bg-color-secondary: #2b2c5d;
+
+$primary-color: #ffe599;
+$success-color: #b6d7a8;
+$error-color: #dc3545;
+$info-color: #007bff;
+$accent-color: #ff0476;
+
 $white: #ffffff;
 $light-grey: #f9fafb;
+$middle-grey: #f5f6f8;
 
 // Borders
 $br-minimal: 4px;

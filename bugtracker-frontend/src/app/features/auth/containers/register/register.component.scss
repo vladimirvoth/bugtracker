@@ -22,7 +22,7 @@
     width: 500px;
     box-shadow: $bs-standard;
     border-radius: $br-normal;
-    background-color: $t1-bg-color-white;
+    background-color: $white;
 
     @include breakpoint($sm) {
       width: 350px;

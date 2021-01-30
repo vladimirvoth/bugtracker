@@ -6,7 +6,7 @@ router.get(
   '/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    res.json({
+    return res.json({
       id: req.user.id,
       username: req.user.username,
       email: req.user.email,

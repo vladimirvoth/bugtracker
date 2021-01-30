@@ -53,7 +53,7 @@
       &:after {
         left: 122px;
         border: 10px solid transparent;
-        border-bottom-color: $t1-bg-color-white;
+        border-bottom-color: $white;
       }
     }
 
@@ -77,8 +77,8 @@
     }
 
     &__register-btn {
-      border-color: $t1-accent-color;
-      background-color: $t1-accent-color;
+      border-color: $accent-color;
+      background-color: $accent-color;
 
       @include breakpoint($sm) {
         display: none;

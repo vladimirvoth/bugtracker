@@ -37,21 +37,21 @@
       max-width: 250px;
 
       &.open {
-        background-color: $t1-error-color;
+        background-color: $error-color;
         color: $white;
       }
 
       &.inprogress {
-        background-color: $t1-primary-color;
+        background-color: $primary-color;
       }
 
       &.testing {
-        background-color: $t1-info-color;
+        background-color: $info-color;
         color: $white;
       }
 
       &.done {
-        background-color: $t1-success-color;
+        background-color: $success-color;
         color: $white;
       }
     }
