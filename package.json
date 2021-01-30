@@ -10,9 +10,6 @@
   },
   "author": "",
   "license": "ISC",
-  "engines": {
-    "node": ">=12.18.4"
-  },
   "devDependencies": {
     "nodemon": "^2.0.6"
   },
