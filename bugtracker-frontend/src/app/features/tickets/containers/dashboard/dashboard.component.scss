@@ -7,6 +7,10 @@
   .dashboard {
     padding: 4rem 2rem;
 
+    @include breakpoint($md) {
+      padding: 6rem 1rem;
+    }
+
     &__headline {
       margin: auto;
       margin-top: 8rem;
@@ -22,9 +26,12 @@
       box-shadow: $bs-standard;
       border-radius: $br-minimal;
 
-      @include breakpoint($sm) {
+      @include breakpoint($md) {
         height: auto;
-        max-width: 350px;
+        margin-bottom: 1rem;
+      }
+
+      @include breakpoint($sm) {
         margin-bottom: 2rem;
       }
     }
@@ -41,6 +48,11 @@
       width: 72px;
       height: 72px;
       border-radius: $br-round-100;
+
+      @include breakpoint($md) {
+        top: 16px;
+        right: 16px;
+      }
     }
   }
 }
