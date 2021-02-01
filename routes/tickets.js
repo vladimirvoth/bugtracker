@@ -63,7 +63,7 @@ router.post(
       const { ticket } = req.body;
 
       if (errors.length > 0) {
-        return res.status(422).json({ msg: errors[0].msg });
+        return res.status(400).json({ msg: errors[0].msg });
       } else {
         const newTicket = new Ticket({
           ...ticket,
@@ -92,7 +92,7 @@ router.get(
       const ticket = await Ticket.findById(id);
 
       if (ticket.created_by !== req.user.id) {
-        return res.status(401).json({
+        return res.status(400).json({
           msg: content.tickets.notFound
         });
       } else {
@@ -127,7 +127,7 @@ router.patch(
       const errors = validationResult(req).array();
 
       if (errors.length > 0) {
-        return res.status(422).json({ msg: errors[0].msg });
+        return res.status(400).json({ msg: errors[0].msg });
       } else {
         const ticket = await Ticket.findOne({ _id: req.params.id });
         ticket[req.body.property] = req.body.value;
@@ -166,7 +166,7 @@ router.post(
       const { comment } = req.body;
 
       if (errors.length > 0) {
-        return res.status(422).json({ msg: errors[0].msg });
+        return res.status(400).json({ msg: errors[0].msg });
       } else {
         const ticket = await Ticket.findOne({ _id: id });
 
@@ -209,7 +209,7 @@ router.patch(
       const errors = validationResult(req).array();
 
       if (errors.length > 0) {
-        return res.status(422).json({ msg: errors[0].msg });
+        return res.status(400).json({ msg: errors[0].msg });
       } else {
         const comment = await Comment.findOne({
           _id: req.params.commentId

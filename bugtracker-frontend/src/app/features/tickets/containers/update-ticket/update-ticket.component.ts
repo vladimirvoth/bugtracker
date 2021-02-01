@@ -1,6 +1,7 @@
-import { filter } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 
@@ -15,7 +16,7 @@ import { selectCurrentTicket, selectLoading } from '../../store/tickets.selector
   templateUrl: './update-ticket.component.html',
   styleUrls: ['./update-ticket.component.scss']
 })
-export class UpdateTicketComponent implements OnInit {
+export class UpdateTicketComponent implements OnInit, OnDestroy {
   id: string;
   ticketForm = updateTicketForm;
   types = types;
@@ -24,6 +25,8 @@ export class UpdateTicketComponent implements OnInit {
 
   ticket$ = this.store.select(selectCurrentTicket);
   loading$ = this.store.select(selectLoading);
+
+  protected componentDestroyed$ = new Subject<void>();
 
   constructor(
     private route: ActivatedRoute,
@@ -35,7 +38,10 @@ export class UpdateTicketComponent implements OnInit {
       this.store.dispatch(getTicket({ id: params['id'] }));
 
       this.ticket$
-        .pipe(filter((ticket) => Boolean(ticket)))
+        .pipe(
+          takeUntil(this.componentDestroyed$),
+          filter((ticket) => Boolean(ticket))
+        )
         .subscribe((ticket) => {
           this.id = ticket._id;
 
@@ -52,5 +58,10 @@ export class UpdateTicketComponent implements OnInit {
 
   save(value, property) {
     this.store.dispatch(updateTicket({ id: this.id, value, property }));
+  }
+
+  ngOnDestroy() {
+    this.componentDestroyed$.next();
+    this.componentDestroyed$.complete();
   }
 }

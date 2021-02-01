@@ -1,6 +1,7 @@
-import { filter } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
@@ -16,7 +17,7 @@ import { selectCurrentTicket, selectLoading } from '../../store/tickets.selector
   templateUrl: './comments-list.component.html',
   styleUrls: ['./comments-list.component.scss']
 })
-export class CommentsListComponent implements OnInit {
+export class CommentsListComponent implements OnInit, OnDestroy {
   id: string;
   comments: Array<Comment>;
   commentsForm: FormGroup;
@@ -25,6 +26,8 @@ export class CommentsListComponent implements OnInit {
   ticket$ = this.store.select(selectCurrentTicket);
   loading$ = this.store.select(selectLoading);
 
+  protected componentDestroyed$ = new Subject<void>();
+
   constructor(
     private store: Store<fromTickets.State>,
     private commentsControlService: CommentsControlService
@@ -32,7 +35,10 @@ export class CommentsListComponent implements OnInit {
 
   ngOnInit() {
     this.ticket$
-      .pipe(filter((ticket) => Boolean(ticket)))
+      .pipe(
+        takeUntil(this.componentDestroyed$),
+        filter((ticket) => Boolean(ticket))
+      )
       .subscribe((ticket) => {
         this.id = ticket._id;
         this.comments = ticket.comments;
@@ -70,5 +76,10 @@ export class CommentsListComponent implements OnInit {
         commentId: event.commentId
       })
     );
+  }
+
+  ngOnDestroy() {
+    this.componentDestroyed$.next();
+    this.componentDestroyed$.complete();
   }
 }

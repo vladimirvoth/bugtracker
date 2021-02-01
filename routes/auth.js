@@ -54,7 +54,7 @@ router.post('/email', async (req, res) => {
       return res.json({ success: true });
     }
   } catch {
-    return res.status(404).json({
+    return res.status(500).json({
       msg: content.standardError
     });
   }
@@ -66,7 +66,7 @@ router.post('/register', registerValidation, (req, res) => {
     const { username, email, password } = req.body;
 
     if (errors.length > 0) {
-      return res.status(422).json({ msg: errors[0].msg });
+      return res.status(400).json({ msg: errors[0].msg });
     } else {
       const emailConfirmationCode = createRandomString(30);
 
@@ -90,7 +90,7 @@ router.post('/register', registerValidation, (req, res) => {
       });
     }
   } catch {
-    return res.status(404).json({
+    return res.status(500).json({
       msg: content.standardError
     });
   }
@@ -125,7 +125,7 @@ router.post('/login', async (req, res) => {
       }
     });
   } catch {
-    return res.status(404).json({
+    return res.status(500).json({
       msg: content.standardError
     });
   }
@@ -160,7 +160,7 @@ router.get(
       res.cookie('JWT', 'JWT ' + token);
       res.redirect('/auth/social-auth-callback');
     } catch {
-      return res.status(404).json({
+      return res.status(500).json({
         msg: content.standardError
       });
     }
@@ -196,7 +196,7 @@ router.get(
       res.cookie('JWT', 'JWT ' + token);
       res.redirect('/auth/social-auth-callback');
     } catch {
-      return res.status(404).json({
+      return res.status(500).json({
         msg: content.standardError
       });
     }
