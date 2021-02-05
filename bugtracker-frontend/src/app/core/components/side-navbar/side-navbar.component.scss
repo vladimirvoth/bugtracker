@@ -66,11 +66,6 @@
       display: inline-block;
       width: 80px;
       text-align: center;
-
-      &:hover .side-navbar__extend-container {
-        animation: 0.5s visibilityFadeIn;
-        animation-fill-mode: forwards;
-      }
     }
 
     &__extend-container {

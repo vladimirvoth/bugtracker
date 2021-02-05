@@ -33,13 +33,17 @@
         ></a>
       </li>
     </ul>
-    <div *ngIf="!(loading$ | async)" class="side-navbar__extend">
+    <div
+      *ngIf="!(loading$ | async)"
+      class="side-navbar__extend"
+      (click)="toggle()"
+    >
       <img
         class="side-navbar__profile-picture"
         [src]="(user$ | async).picture || '/assets/images/blank-profile.png'"
         alt="{{ (user$ | async).username }}"
       />
-      <div class="side-navbar__extend-container">
+      <div class="side-navbar__extend-container" [class.open]="isOpen">
         <span class="p-2 text-dark">Hello, {{ (user$ | async).username }}</span>
         <hr />
         <a

@@ -58,3 +58,8 @@ blockquote {
 .is-center {
   text-align: center;
 }
+
+.open {
+  animation: 0.3s visibilityFadeIn !important;
+  animation-fill-mode: forwards !important;
+}
