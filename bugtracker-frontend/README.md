@@ -1,27 +1,44 @@
-# Bugtracker
+# Bugtracker Frontend App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.3.
+This is the Angular 10 frontend app from the Bugtracker.
 
-## Development server
+Bugtracker is a simple-issue tracking app in the tradition of JIRA but much less complicated, for free, and with the goal to suit the needs of small teams in the best possible way. At least in the future because it is yet far off from being finished.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## [Demo](https://my-bugtracker.herokuapp.com/ 'Demo')
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+You will need to run the Bugtracker Express app (the backend API) first. Then simply install all dependencies.
 
-## Build
+```bash
+   npm i
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+or
 
-## Running unit tests
+```bash
+   yarn
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To start the app:
 
-## Running end-to-end tests
+```bash
+   ng serve
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Technologies used
 
-## Further help
+- **Angular 10**
+- **NgRx** for state management (inspired by Redux)
+- **Bootstrap 4**
+- **SCSS** with the BEM methodology
+- **Chart.js**
+- **Markdown** for creating formatted descriptions and comments
+- **Inline editing**
+- **Authentication and Authorization**
+- **Social login** with Facebook or Github
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## What's coming next?
+
+- **Implementing a project level** so that tickets can be assigned to different projects
+- **Collaboration** so that different users can work on projects and tickets together
