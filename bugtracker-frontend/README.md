@@ -20,7 +20,7 @@ or
    yarn
 ```
 
-To start the app:
+To run the dev server `http://localhost:4200/`:
 
 ```bash
    ng serve
