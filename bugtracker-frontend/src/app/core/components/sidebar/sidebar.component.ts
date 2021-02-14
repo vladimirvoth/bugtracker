@@ -10,15 +10,15 @@ import * as fromUser from '../../store/user/user.reducer';
 import { selectLoading, selectUser } from '../../store/user/user.selectors';
 
 @Component({
-  selector: 'app-side-navbar',
-  templateUrl: './side-navbar.component.html',
-  styleUrls: ['./side-navbar.component.scss']
+  selector: 'app-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.scss']
 })
-export class SideNavbarComponent {
+export class SidebarComponent {
   @HostListener('document:click', ['$event.target']) onClick(target) {
     const clickedInside = this.elementRef.nativeElement.contains(target);
 
-    if (!clickedInside) {
+    if (!clickedInside && this.isOpen) {
       this.toggle();
     }
   }

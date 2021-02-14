@@ -1,53 +1,45 @@
-<nav class="side-navbar">
-  <img
-    class="side-navbar__logo"
-    src="/assets/svg/logo.svg"
-    alt="Bugtracker Logo"
-  />
-  <ul class="side-navbar__list">
-    <li class="side-navbar__list-item">
+<nav class="sidebar">
+  <img class="sidebar__logo" src="/assets/svg/logo.svg" alt="Bugtracker Logo" />
+  <ul class="sidebar__list">
+    <li class="sidebar__list-item">
       <a
-        class="side-navbar__list-link"
+        class="sidebar__list-link"
         routerLink="/tickets"
         routerLinkActive="active-link"
         ><fa-icon [icon]="faHome"></fa-icon
       ></a>
     </li>
   </ul>
-  <div class="side-navbar__bottom-container">
-    <ul class="side-navbar__list side-navbar__list-bottom">
-      <li class="side-navbar__list-item">
+  <div class="sidebar__bottom-container">
+    <ul class="sidebar__list sidebar__list-bottom">
+      <li class="sidebar__list-item">
         <a
-          class="side-navbar__list-link"
+          class="sidebar__list-link"
           routerLink="/settings"
           routerLinkActive="active-link"
           ><fa-icon [icon]="faCog"></fa-icon
         ></a>
       </li>
-      <li class="side-navbar__list-item">
+      <li class="sidebar__list-item">
         <a
-          class="side-navbar__list-link"
+          class="sidebar__list-link"
           routerLink="/faq"
           routerLinkActive="active-link"
           ><fa-icon [icon]="faQuestion"></fa-icon
         ></a>
       </li>
     </ul>
-    <div
-      *ngIf="!(loading$ | async)"
-      class="side-navbar__extend"
-      (click)="toggle()"
-    >
+    <div *ngIf="!(loading$ | async)" class="sidebar__extend" (click)="toggle()">
       <img
-        class="side-navbar__profile-picture"
+        class="sidebar__profile-picture"
         [src]="(user$ | async).picture || '/assets/images/blank-profile.png'"
         alt="{{ (user$ | async).username }}"
       />
-      <div class="side-navbar__extend-container" [class.open]="isOpen">
+      <div class="sidebar__extend-container" [class.open]="isOpen">
         <span class="p-2 text-dark">Hello, {{ (user$ | async).username }}</span>
         <hr />
         <a
-          class="p-2 text-dark font-weight-bold side-navbar__extend-link"
+          class="p-2 text-dark font-weight-bold sidebar__extend-link"
           href="#"
           (click)="logout($event)"
           >Logout</a

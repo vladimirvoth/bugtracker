@@ -12,7 +12,7 @@ import { StoreModule } from '@ngrx/store';
 import { FooterComponent } from './components/footer/footer.component';
 import { InlineEditComponent } from './components/inline-edit/inline-edit.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { SideNavbarComponent } from './components/side-navbar/side-navbar.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DataPrivacyComponent } from './containers/data-privacy/data-privacy.component';
 import { HomeComponent } from './containers/home/home.component';
 import { LayoutComponent } from './containers/layout/layout.component';
@@ -29,7 +29,7 @@ import { UserEffects } from './store/user/user.effects';
     HomeComponent,
     NavbarComponent,
     LayoutComponent,
-    SideNavbarComponent,
+    SidebarComponent,
     FooterComponent,
     LegalComponent,
     DataPrivacyComponent,
