@@ -37,6 +37,7 @@ To run the dev server `http://localhost:4200/`:
 - **Inline editing**
 - **Authentication and Authorization**
 - **Social login** with Facebook or Github
+- **Cypress** for fast, easy and reliable testing in the browser
 
 ## What's coming next?
 
